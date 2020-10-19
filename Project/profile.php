@@ -108,7 +108,7 @@ if (isset($_POST["saved"])) {
 
 
 ?>
-
+    <div style="padding:15px;margin-top:50px">
     <form method="POST">
         <label for="email">Email</label>
         <input type="email" name="email" value="<?php safer_echo(get_email()); ?>"/>
@@ -121,4 +121,5 @@ if (isset($_POST["saved"])) {
         <input type="password" name="confirm"/>
         <input type="submit" name="saved" value="Save Profile"/>
     </form>
+    </div>
 <?php require(__DIR__ . "/partials/flash.php");
