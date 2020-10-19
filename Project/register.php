@@ -68,6 +68,7 @@ if (!isset($username)) {
     $username = "";
 }
 ?>
+    <div style="padding:10px;margin-top:30px">
     <form method="POST">
         <label for="email">Email:</label>
         <input type="email" id="email" name="email" required value="<?php safer_echo($email); ?>"/>
@@ -79,4 +80,5 @@ if (!isset($username)) {
         <input type="password" id="p2" name="confirm" required/>
         <input type="submit" name="register" value="Register"/>
     </form>
+    </div>
 <?php require(__DIR__ . "/partials/flash.php");
