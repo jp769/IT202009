@@ -31,6 +31,12 @@ ul[class="nav"] {
     background-color: #08b1ff;
 }
 
+form{
+    margin: 40px;
+    padding: 20px;
+    display: inline;
+}
+
 input, select {
     width: 100%;
     padding: 12px 20px;
