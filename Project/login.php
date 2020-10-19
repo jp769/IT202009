@@ -1,5 +1,4 @@
 <?php require_once(__DIR__ . "/partials/nav.php"); ?>
-    <div style="padding:15px;margin-top:50px">
 <form method="POST">
     <label for="email">Email:</label>
     <input type="email" id="email" name="email" required/>
@@ -7,7 +6,6 @@
     <input type="password" id="p1" name="password" required/>
     <input type="submit" name="login" value="Login"/>
 </form>
-</div>
 
 <?php
 if (isset($_POST["login"])) {
