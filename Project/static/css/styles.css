@@ -59,15 +59,6 @@ input[type=submit] {
     cursor: pointer;
 }
 
-input[type=sumbit]:hover {
-    background: #08b1ff;
-    color: #fff;
-    border: 1px solid #eee;
-    border-radius: 15px;
-    box-shadow: 5px 5px 5px #eee;
-    text=shadow: none;
-}
-
 input[type=email] {
     margin-left: 37.5%;
     margin-right: 37.5%;
