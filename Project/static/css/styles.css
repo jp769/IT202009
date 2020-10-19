@@ -61,5 +61,16 @@ input[type=email] {
     margin-left: 37.5%;
     margin-right: 37.5%;
     width: 25%;
+}
 
+input[type=text] {
+    margin-left: 37.5%;
+    margin-right: 37.5%;
+    width: 25%;
+}
+
+input[type=password] {
+    margin-left: 37.5%;
+    margin-right: 37.5%;
+    width: 25%;
 }
