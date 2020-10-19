@@ -59,8 +59,8 @@ input[type=submit] {
     cursor: pointer;
 }
 
-.form-submut-button:hover {
-    background: #087ead;
+input[type=sumbit]:hover {
+    background: #08b1ff;
     color: #fff;
     border: 1px solid #eee;
     border-radius: 15px;
