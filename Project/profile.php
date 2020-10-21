@@ -113,7 +113,7 @@ if (isset($_POST["saved"])) {
         <label for="email">Email</label>
         <input type="email" name="email" value="<?php safer_echo(get_email()); ?>"/>
         <label for="username">Username</label>
-        <input type="text" maxlength="60" name="username" value="<?php safer_echo(get_username()); ?>"/>
+        <input type="text" name="username" value="<?php safer_echo(get_username()); ?>" maxlength="60"/>
         <!-- DO NOT PRELOAD PASSWORD-->
         <label for="pw">Password</label>
         <input type="password" name="password" maxlength="60"/>
