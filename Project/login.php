@@ -56,6 +56,7 @@ SELECT Roles.name FROM Roles JOIN UserRoles on Roles.id = UserRoles.role_id wher
                     unset($result["password"]);//remove password so we don't leak it beyond this page
                     //let's create a session for our user based on the other data we pulled from the table
                     $_SESSION["user"] = $result;//we can save the entire result array since we removed password
+		    echo var_export($result);
                     if ($roles) {
                         $_SESSION["user"]["roles"] = $roles;
                     }
