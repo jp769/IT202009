@@ -35,11 +35,11 @@ if (isset($_POST["login"])) {
     if ($isValid) {
         $db = getDB();
         if (isset($db)) {
-            $stmt = $db->prepare("SELECT id, email, password from Users WHERE email = :email LIMIT 1");
+            $stmt = $db->prepare("SELECT id, email, username, password from Users WHERE email = :email LIMIT 1, username =:username LIMIT 1 ");
 
-            $params = array(":email" => $email);
+            $params = array(":email" => $email,":username" => $username);
             $r = $stmt->execute($params);
-            //echo "db returned: " . var_export($r, true);
+            echo "db returned: " . var_export($r, true);
             $e = $stmt->errorInfo();
             if ($e[0] != "00000") {
                 echo "uh oh something went wrong: " . var_export($e, true);
