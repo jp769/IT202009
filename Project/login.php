@@ -2,7 +2,9 @@
 <div class="form">
 <form method="POST">
     <label for="email">Email:</label>
-    <input type="email" id="email" name="email" required/>
+    <input type="email" id="email" name="email" />
+    <label for="user">Username:</label>
+    <input type="text" id="user" name="username" maxlength="60"/>
     <label for="p1">Password:</label>
     <input type="password" id="p1" name="password" required/>
     <input type="submit" name="login" value="Login"/>
@@ -15,6 +17,9 @@ if (isset($_POST["login"])) {
     $password = null;
     if (isset($_POST["email"])) {
         $email = $_POST["email"];
+    }
+    if (isset($_POST["username"])) {
+	$username = $_POST["username"];
     }
     if (isset($_POST["password"])) {
         $password = $_POST["password"];
@@ -34,7 +39,7 @@ if (isset($_POST["login"])) {
 
             $params = array(":email" => $email);
             $r = $stmt->execute($params);
-            echo "db returned: " . var_export($r, true);
+            //echo "db returned: " . var_export($r, true);
             $e = $stmt->errorInfo();
             if ($e[0] != "00000") {
                 echo "uh oh something went wrong: " . var_export($e, true);
