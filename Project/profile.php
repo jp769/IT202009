@@ -85,9 +85,12 @@ if (isset($_POST["saved"])) {
                     flash("Reset Password");
                 }
                 else {
-                    flash("Error resetting password, passwords dont match");
+                    flash("Error resetting password");
                 }
             }
+	    else {
+		flash("Error passwords dont match");
+	    }
         }
 
 //fetch/select fresh data in case anything changed
