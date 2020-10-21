@@ -2,9 +2,7 @@
 <div class="form">
 <form method="POST">
     <label for="email">Email:</label>
-    <input type="email" id="email" name="email" />
-    //<label for="user">Username:</label>
-    //<input type="text" id="user" name="username" maxlength="60"/>
+    <input type="email" id="email" name="email" /> 
     <label for="p1">Password:</label>
     <input type="password" id="p1" name="password" required/>
     <input type="submit" name="login" value="Login"/>
