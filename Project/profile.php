@@ -75,7 +75,8 @@ if (isset($_POST["saved"])) {
         //password is optional, so check if it's even set
         //if so, then check if it's a valid reset request
         if (!empty($_POST["password"]) && !empty($_POST["confirm"])) {
-            if ($_POST["password"] == $_POST["confirm"]) {
+            if (!empty($_PosT["current"]){
+	    if ($_POST["password"] == $_POST["confirm"]) {
                 $password = $_POST["password"];
                 $hash = password_hash($password, PASSWORD_BCRYPT);
                 //this one we'll do separate
@@ -90,6 +91,10 @@ if (isset($_POST["saved"])) {
             }
 	    else {
 		flash("Error passwords dont match");
+	    }
+	    }
+	    else{
+		flash("Error enter current password to change password");
 	    }
         }
 
@@ -119,10 +124,12 @@ if (isset($_POST["saved"])) {
         <label for="username">Username</label>
         <input type="text" name="username" value="<?php safer_echo(get_username()); ?>" maxlength="60"/>
         <!-- DO NOT PRELOAD PASSWORD-->
-        <label for="pw">Password</label>
+        <label for="current">Current Password</label>
+	<label type="password" name="current" maxlength="60"/>
+	<label for="pw">Password</label>
         <input type="password" name="password" maxlength="60"/>
-        <label for="cpw">Confirm Password</label>
-        <input type="password" name="confirm"/>
+        <label for="cpw">Confirm New Password</label>
+        <input type="password" name="confirm" maxlength="60"/>
         <input type="submit" name="saved" value="Save Profile"/>
     </form>
 </div>
