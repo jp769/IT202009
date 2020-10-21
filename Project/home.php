@@ -11,5 +11,5 @@ if (isset($_SESSION["user"]) && isset($_SESSION["user"]["email"])) {
     $email = $_SESSION["user"]["email"];
 }
 ?>
-	<p>Welcome To, ShopeName TBH <?php echo $email; ?></p>
+	<p>Welcome To ShopeName TBH,  <?php echo $email; ?></p>
 <?php require(__DIR__ . "/partials/flash.php");
