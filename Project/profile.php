@@ -75,7 +75,7 @@ if (isset($_POST["saved"])) {
         //password is optional, so check if it's even set
         //if so, then check if it's a valid reset request
         if (!empty($_POST["password"]) && !empty($_POST["confirm"])) {
-            if (!empty($_PosT["current"]){
+            if (!empty($_POST["current"]){
 	    if ($_POST["password"] == $_POST["confirm"]) {
                 $password = $_POST["password"];
                 $hash = password_hash($password, PASSWORD_BCRYPT);
@@ -93,6 +93,7 @@ if (isset($_POST["saved"])) {
 		flash("Error passwords dont match");
 	    }
         }
+}
 
 //fetch/select fresh data in case anything changed
         $stmt = $db->prepare("SELECT email, username from Users WHERE id = :id LIMIT 1");
