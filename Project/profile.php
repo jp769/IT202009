@@ -122,7 +122,7 @@ if (isset($_POST["saved"])) {
         <input type="text" name="username" value="<?php safer_echo(get_username()); ?>" maxlength="60"/>
         <!-- DO NOT PRELOAD PASSWORD-->
         <label for="current">Current Password</label>
-	<label type="password" name="current" maxlength="60"/>
+	<input type="password" name="current" maxlength="60"/>
 	<label for="pw">Password</label>
         <input type="password" name="password" maxlength="60"/>
         <label for="cpw">Confirm New Password</label>
