@@ -15,6 +15,7 @@
 if (isset($_POST["login"])) {
     $email = null;
     $password = null;
+    $username = null;
     if (isset($_POST["email"])) {
         $email = $_POST["email"];
     }
@@ -25,7 +26,7 @@ if (isset($_POST["login"])) {
         $password = $_POST["password"];
     }
     $isValid = true;
-    if (!isset($email) || !isset($password)) {
+    if ((!isset($email) || !isset($username)) || !isset($password)) {
         $isValid = false;
     }
     if (!strpos($email, "@")) {
