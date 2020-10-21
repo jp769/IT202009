@@ -37,7 +37,7 @@ if (isset($_POST["login"])) {
         if (isset($db)) {
             $stmt = $db->prepare("SELECT id, email, password, username from Users WHERE email = :email LIMIT 1");
 
-            $params = array(":email" => $email, ":username" => $username);
+            $params = array(":email" => $email);
             $r = $stmt->execute($params);
             echo "db returned: " . var_export($r, true);
             $e = $stmt->errorInfo();
@@ -55,7 +55,7 @@ SELECT Roles.name FROM Roles JOIN UserRoles on Roles.id = UserRoles.role_id wher
 
                     unset($result["password"]);//remove password so we don't leak it beyond this page
                     //let's create a session for our user based on the other data we pulled from the table
-                    $_SESSION["user"] = $result[0];//we can save the entire result array since we removed password
+                    $_SESSION["user"] = $result;//we can save the entire result array since we removed password
                     if ($roles) {
                         $_SESSION["user"]["roles"] = $roles;
                     }
