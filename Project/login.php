@@ -35,9 +35,9 @@ if (isset($_POST["login"])) {
     if ($isValid) {
         $db = getDB();
         if (isset($db)) {
-            $stmt = $db->prepare("SELECT id, email, username, password from Users WHERE email = :email LIMIT 1, username =:username");
+            $stmt = $db->prepare("SELECT id, email, password, username from Users WHERE email = :email LIMIT 1  username =:username");
 
-            $params = array(":email" => $email,":username" => $username);
+            $params = array(":email" => $email, ":username" => $username);
             $r = $stmt->execute($params);
             echo "db returned: " . var_export($r, true);
             $e = $stmt->errorInfo();
