@@ -30,7 +30,7 @@ if (isset($_POST["login"])) {
         $isValid = false;
     }
     
-    if (isset($email) && !strpos($email, "@")) {
+    if ($email && !strpos($email, "@")) {
         $isValid = false;
         echo "<br>Invalid email<br>";
     }
