@@ -92,10 +92,6 @@ if (isset($_POST["saved"])) {
 	    else {
 		flash("Error passwords dont match");
 	    }
-	    }
-	    else{
-		flash("Error enter current password to change password");
-	    }
         }
 
 //fetch/select fresh data in case anything changed
