@@ -56,6 +56,7 @@ if(isset($id)){
 }
 ?>
 
+<div class="form">
 <form method="POST">
         <label>Name</label>
         <input name="name" placeholder="Name" value="<?php echo $result["name"];?>"/>
@@ -67,6 +68,6 @@ if(isset($id)){
         <input type="text" name="description" placeholder="Small Description" value="<?php echo $result["dscrp"];?>"/>
         <input type="submit" name="save" value="Update"/>
 </form>
-
+</div>
 
 <?php require(__DIR__ . "/partials/flash.php");

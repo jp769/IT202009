@@ -5,7 +5,7 @@ if (!has_role("Admin")) {
 	die(header("Location: login.php"));
 }
 ?>
-
+<div class="form">
 <form method="POST">
 	<label>Name</label>
 	<input name="name" placeholder="Name"/>
@@ -17,6 +17,7 @@ if (!has_role("Admin")) {
 	<input type="text" name="description" placeholder="Small Description"/>
 	<input type="submit" name="save" value="Create"/>
 </form>
+</div>
 
 <?php
 if(isset($_POST["save"])){
