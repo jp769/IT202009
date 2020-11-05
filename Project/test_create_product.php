@@ -25,7 +25,7 @@ if(isset($_POST["save"])){
 	$name = $_POST["name"];
 	$quantity = $_POST["quantity"];
 	$price = $_POST["price"];
-	$desription = $_POST["description"];
+	$description = $_POST["description"];
 	$user = get_user_id();
 	$db = getDB();
 	$stmt = $db->prepare("INSERT INTO Products (name, quantity, price, description, user_id) VALUES(:name, :quantity, :price, :description, :user)");
