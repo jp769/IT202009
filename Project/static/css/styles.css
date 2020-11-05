@@ -77,8 +77,9 @@ input[type=password] {
     width: 25%;
 }
 
-input[type=prod-label] {
+label[for="prod-label"] {
     margin-left: 37.5%;
     margin-right: 37.5%;
     width: 25%;
 }
+
