@@ -29,7 +29,8 @@ if(isset($_POST["save"])){
 			":name"=>$name,
 			":quantity"=>$quantity,
 			":price"=>$price,
-			":description"=>$description
+			":description"=>$description,
+			":id"=>$id
 		]);
 		if($r){
 			flash("Updated successfully with id: " . $id);
