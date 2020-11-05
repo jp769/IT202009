@@ -20,16 +20,16 @@ if(isset($_POST["save"])){
 	$name = $_POST["name"];
 	$quantity = $_POST["quantity"];
 	$price = $_POST["price"];
-	$dscrp = $_POST["description"];
+	$description = $_POST["description"];
 	$db = getDB();
 	if(isset($id)){
-		$stmt = $db->prepare("UPDATE Products set name=:name, quantity=:quantity, price=:price, description=:dscrp where id=:id");
+		$stmt = $db->prepare("UPDATE Products set name=:name, quantity=:quantity, price=:price, description=:description where id=:id");
 		//$stmt = $db->prepare("INSERT INTO F20_Eggs (name, state, base_rate, mod_min, mod_max, next_stage_time, user_id) VALUES(:name, :state, :br, :min,:max,:nst,:user)");
 		$r = $stmt->execute([
 			":name"=>$name,
 			":quantity"=>$quantity,
 			":price"=>$price,
-			":dscrp"=>$dscrp,
+			":description"=>$description
 		]);
 		if($r){
 			flash("Updated successfully with id: " . $id);
@@ -65,7 +65,7 @@ if(isset($id)){
         <label for="prod-label">Price</label>
         <input type="number" min="0.00" step=".01" name="price" value="<?php echo $result["price"];?>"/>
         <label for="prod-label">Description</label>
-        <input type="text" name="description" placeholder="Small Description" value="<?php echo $result["dscrp"];?>"/>
+        <input type="text" name="description" placeholder="Small Description" value="<?php echo $result["description"];?>"/>
         <input type="submit" name="save" value="Update"/>
 </form>
 </div>
