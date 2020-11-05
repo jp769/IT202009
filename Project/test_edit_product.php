@@ -58,13 +58,13 @@ if(isset($id)){
 
 <div class="form">
 <form method="POST">
-        <label>Name</label>
+        <label for="prod-label">Name</label>
         <input name="name" placeholder="Name" value="<?php echo $result["name"];?>"/>
-        <label>Quantity</label>
+        <label for="prod-label">Quantity</label>
         <input type="number" min="0" name="quantity" value="<?php echo $result["quantity"];?>"/>
-        <label>Price</label>
+        <label for="prod-label">Price</label>
         <input type="number" min="0.00" step=".01" name="price" value="<?php echo $result["price"];?>"/>
-        <label>Description</label>
+        <label for="prod-label">Description</label>
         <input type="text" name="description" placeholder="Small Description" value="<?php echo $result["dscrp"];?>"/>
         <input type="submit" name="save" value="Update"/>
 </form>

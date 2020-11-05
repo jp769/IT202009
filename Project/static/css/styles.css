@@ -76,3 +76,9 @@ input[type=password] {
     margin-right: 37.5%;
     width: 25%;
 }
+
+input[type=prod-label] {
+    margin-left: 37.5%;
+    margin-right: 37.5%;
+    width: 25%;
+}

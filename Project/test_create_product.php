@@ -7,13 +7,13 @@ if (!has_role("Admin")) {
 ?>
 <div class="form">
 <form method="POST">
-	<label>Name</label>
+	<label for="prod-label">Name</label>
 	<input name="name" placeholder="Name"/>
-	<label>Quantity</label>
+	<label for="prod-label">Quantity</label>
 	<input type="number" min="0" name="quantity"/>
-	<label>Price</label>
+	<label for ="prod-label">Price</label>
 	<input type="number" min="0.00" value="0.00" step=".01" name="price"/>
-	<label>Description</label>
+	<label for ="prod-label">Description</label>
 	<input type="text" name="description" placeholder="Small Description"/>
 	<input type="submit" name="save" value="Create"/>
 </form>
