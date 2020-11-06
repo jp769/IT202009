@@ -44,5 +44,6 @@ if(isset($_POST["save"])){
 		flash("Error creating: " . var_export($e, true));
 	}
 }
+
 ?>
 <?php require(__DIR__ . "/partials/flash.php");
