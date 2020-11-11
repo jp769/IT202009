@@ -11,7 +11,7 @@ require_once(__DIR__ . "/../lib/helpers.php");
         <li><a href="register.php">Register</a></li>
     <?php endif; ?>
     <?php if (has_role("Admin")): ?>
-	<li style="float:right"><a class="active" href=<?php echo getURL("test_create_product.php");?>>Create Product</a></li
+	<li style="float:right"><a class="active" href=<?php echo getURL("test_create_product.php");?>>Create Product</a></li>
 	<li style="float:right"><a class="active" href=<?php echo getURL("test_edit_product.php");?>>Edit Product</a></li>
 	//<li style="float:right"><a class="active" href="test_list_product.php">View Product</a></li>
 	//<li style="float:right"><a class="active" href="test_create_cart.php">Create Cart</a></li>
