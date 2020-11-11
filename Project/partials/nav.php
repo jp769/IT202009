@@ -10,16 +10,14 @@ require_once(__DIR__ . "/../lib/helpers.php");
         <li><a href="login.php">Login</a></li>
         <li><a href="register.php">Register</a></li>
     <?php endif; ?>
-    <?php if (has_role("Admin")): ?>
-	<li style="float:right"><a class="active" href=<?php echo getURL("test_create_product.php");?>>Create Product</a></li>
-	<li style="float:right"><a class="active" href=<?php echo getURL("test_edit_product.php");?>>Edit Product</a></li>
-	//<li style="float:right"><a class="active" href="test_list_product.php">View Product</a></li>
-	//<li style="float:right"><a class="active" href="test_create_cart.php">Create Cart</a></li>
-	//<li style="float:right"><a class="active" href="test_list_cart.php">View Cart</a></li>
-    <?php endif; ?>
     <?php if (is_logged_in()): ?>
         <li><a href="profile.php">Profile</a></li>
-        <li style="float:right"><a class="active"  href="logout.php">Logout</a></li>
+        <li style="float:right"><a class="active" href="logout.php">Logout</a></li>
     <?php endif; ?>
+    <?php if (has_role("Admin")): ?>
+	<li style="float:right"><a class="active" href=<?php echo getURL("Test/test_create_product.php");?>>Create Product</a></li>
+	<li style="float:right"><a class="active">Edit Product</a></li>
+    <?php endif; ?>
+
 </ul>
 </nav>
