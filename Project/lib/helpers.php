@@ -68,6 +68,8 @@ function getMessages() {
     return array();
 }
 
+//end flash
+
 function getURL($path) {
     if (substr($path, 0, 1) == "/") {
         return $path;
@@ -75,10 +77,5 @@ function getURL($path) {
     return $_SERVER["CONTEXT_PREFIX"] . "/IT202009/Project/Test/$path";
 }
 
-//end flash
-
-//function getTotal($n,$p) {
-
-//}
 
 ?>
