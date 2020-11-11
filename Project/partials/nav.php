@@ -16,6 +16,7 @@ require_once(__DIR__ . "/../lib/helpers.php");
 	//<li style="float:right"><a class="active" href="test_list_product.php">View Product</a></li>
 	//<li style="float:right"><a class="active" href="test_create_cart.php">Create Cart</a></li>
 	//<li style="float:right"><a class="active" href="test_list_cart.php">View Cart</a></li>
+    <?php endif; ?>
     <?php if (is_logged_in()): ?>
         <li><a href="profile.php">Profile</a></li>
         <li style="float:right"><a class="active"  href="logout.php">Logout</a></li>
