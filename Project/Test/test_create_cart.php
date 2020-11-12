@@ -5,7 +5,7 @@ if (!has_role("Admin")) {
 	die(header("Location: ../login.php"));
 }
 ?>
-
+<?php
 $result = [];
 if (isset($id)) {
     $id = $_GET["id"];
@@ -19,6 +19,7 @@ $db = getDB();
 $stmt = $db->prepare("SELECT id,name from Products LIMIT 10");
 $r = $stmt->execute();
 $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
+?>
 
 <div class="form">
 <form method="POST">
