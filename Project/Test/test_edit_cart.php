@@ -13,17 +13,12 @@ if(isset($_GET["id"])){
 	$id = $_GET["id"];
 }
 ?>
+
 <?php
 //saving
 if(isset($_POST["save"])){
 	//TODO add proper validation/checks
 
-	$product = $_POST["product_id"];
-	if ($product <= 0) {
-	    $product = null;
-	}
-	$quantity = $_POST["quantity"]
-	$price = $_POST["price"]
 	$user = get_user_id();
 	$db = getDB();
 	if (isset($id)) {
