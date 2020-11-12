@@ -17,7 +17,7 @@ if(isset($_GET["id"])){
 //saving
 if(isset($_POST["save"])){
 	//TODO add proper validation/checks
-
+	$name = $_POST["name"];
 	$product = $_POST["product_id"];
 	if ($product <= 0) {
 	    $product = null;
@@ -26,9 +26,9 @@ if(isset($_POST["save"])){
 	$price = $_POST["price"]
 	$user = get_user_id();
 	if (isset($id)) {
-        $stmt = $db->prepare("UPDATE Cart set product_id=:product, quantity=:quantity, price=:price where id=:id");
+        $stmt = $db->prepare("UPDATE Cart set product_id=:product_id, quantity=:quantity, price=:price where id=:id");
         $r = $stmt->execute([
-            ":product" => $product,
+            ":product_id" => $product,
             ":quantity" => $quantity,
             ":price" => $price,
             ":id" => $id
@@ -60,12 +60,15 @@ if (isset($id)) {
 $db = getDB();
 $stmt = $db->prepare("SELECT id,name,price from Products LIMIT 10");
 $r = $stmt->execute();
-$eggs = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
+
+<div class="form">
     <h3>Edit Cart</h3>
     <form method="POST">
-
-        <label for="prod-label">Product</label>
+	<label for="prod-label">Product Name</label>
+	<input name="name" placeHolder="Name" value="<?php echo $result["name];?>"/>
+        <label for="prod-label">ProductID</label>
         <select name="product_id" value="<?php echo $result["product_id"];?>" >
             <option value="-1">None</option>
             <?php foreach ($products as $product): ?>
@@ -77,9 +80,8 @@ $eggs = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <input type="number" min="0" name="quantity" value="<?php echo $result["quantity"]; ?>"/>
         <label for="prod-label">Price</label>
         <input type="number" min="0.00" step=".01"  name="price" value="<?php echo $result["price"]; ?>"/>
-
         <input type="submit" name="save" value="Update"/>
     </form>
-
+</div>
 
 <?php require(__DIR__ . "/../partials/flash.php");
