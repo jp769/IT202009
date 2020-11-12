@@ -57,8 +57,8 @@ if (isset($_POST["search"]) && !empty($query)) {
                         <div><?php safer_echo($r["user_id"]); ?></div>
                     </div>
                     <div>
-                        <a type="button" href=<?php echo getURL("Test/test_edit_product.php?id=<?php safer_echo($r['id']); ?>");?>>Edit</a>
-                        <a type="button" href=<?php echo getURL("Test/test_view_product.php?id=<?php safer_echo($r['id']); ?>");?>>View</a>
+                        <a type="button" >Edit</a>
+                        <a type="button" >View</a>
                     </div>
                 </div>
             <?php endforeach; ?>
@@ -67,4 +67,5 @@ if (isset($_POST["search"]) && !empty($query)) {
         <p>No results</p>
     <?php endif; ?>
 </div>
+
 <?php require(__DIR__ . "/../partials/flash.php");
