@@ -1,4 +1,4 @@
-<?php require_once(__DIR__ . "/partials/nav.php");?>
+<?php require_once(__DIR__ . "/../partials/nav.php");?>
 <?php
 if (!has_role("Admin")) {
 	flash("You don't have permission to access this page.");
@@ -46,4 +46,4 @@ if(isset($_POST["save"])){
 }
 
 ?>
-<?php require(__DIR__ . "/partials/flash.php");
+<?php require(__DIR__ . "/../partials/flash.php");
