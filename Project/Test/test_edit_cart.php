@@ -42,6 +42,8 @@ if(isset($_POST["save"])){
     	}
 }
 ?>
+
+<?php
 //fetching
 $result = [];
 if (isset($id)) {
