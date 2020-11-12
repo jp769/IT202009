@@ -18,7 +18,11 @@ if(isset($_GET["id"])){
 //saving
 if(isset($_POST["save"])){
 	//TODO add proper validation/checks
-
+	$product = $_POST["product_id"];
+	if ($product <= 0) {
+	    $product = null;
+	}
+	$quantity = $_POST["quantity"];
 	$user = get_user_id();
 	$db = getDB();
 	if (isset($id)) {
@@ -62,7 +66,7 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 <div class="form">
     <form method="POST">
-	<label>Cart ID <?php echo $result["id"]; ?></label>
+	<label for="prod-label">Cart ID <?php echo $result["id"]; ?></label>
         <label for="prod-label">ProductID</label>
 	<select name="product_id" value="<?php echo $result["product_id"];?>" >
             <option value="-1">None</option>
