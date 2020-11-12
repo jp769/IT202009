@@ -14,7 +14,7 @@ if (isset($_POST["query"])) {
 }
 if (isset($_POST["search"]) && !empty($query)) {
     $db = getDB();
-    $stmt = $db->prepare("SELECT name,quantity,price,description, user_id from Products WHERE name like :q LIMIT 10");
+    $stmt = $db->prepare("SELECT id,name,quantity,price,description, user_id from Products WHERE name like :q LIMIT 10");
     $r = $stmt->execute([":q" => "%$query%"]);
     if ($r) {
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -24,12 +24,12 @@ if (isset($_POST["search"]) && !empty($query)) {
     }
 }
 ?>
-<div class="form">
+
 <form method="POST">
     <input name="query" placeholder="Search" value="<?php safer_echo($query); ?>"/>
     <input type="submit" value="Search" name="search"/>
 </form>
-</div>
+
 
 <div class="results">
     <?php if (count($results) > 0): ?>
@@ -42,7 +42,7 @@ if (isset($_POST["search"]) && !empty($query)) {
                     </div>
                     <div>
                         <div>Quantity:</div>
-                        <div><?php getState($r["quantity"]); ?></div>
+                        <div><?php safer_echo($r["quantity"]); ?></div>
                     </div>
                     <div>
                         <div>Price:</div>
