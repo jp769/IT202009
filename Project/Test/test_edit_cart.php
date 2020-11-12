@@ -82,4 +82,4 @@ $eggs = $stmt->fetchAll(PDO::FETCH_ASSOC);
     </form>
 
 
-<?php require(__DIR__ . "/partials/flash.php");
+<?php require(__DIR__ . "/../partials/flash.php");
