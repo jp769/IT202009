@@ -14,7 +14,7 @@ if (isset($_POST["query"])) {
 }
 if (isset($_POST["search"]) && !empty($query)) {
     $db = getDB();
-    $stmt = $db->prepare("SELECT cart.id,cart.product_id, Users.username from Cart as cart JOIN Users on cart.user_id = Users.id LEFT JOIN Products as product on cart.product_id = product.id WHERE cart.id like :q LIMIT 10");
+    $stmt = $db->prepare("SELECT cart.id,cart.product_id,product.name as name, Users.username from Cart as cart JOIN Users on cart.user_id = Users.id LEFT JOIN Products as product on cart.product_id = product.id WHERE cart.id like :q LIMIT 10");
     $r = $stmt->execute([":q" => "%$query%"]);
     if ($r) {
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -42,7 +42,7 @@ if (isset($_POST["search"]) && !empty($query)) {
                         </div>
                         <div>
                             <div>Product:</div>
-                            <div><?php safer_echo($r["product"]); ?></div>
+                            <div><?php safer_echo($r["name"]); ?></div>
                         </div>
                         <div>
                             <div>Owner:</div>
