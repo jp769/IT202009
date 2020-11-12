@@ -43,7 +43,20 @@ if(isset($_POST["save"])){
 }
 ?>
 //fetching
-
+$result = [];
+if (isset($id)) {
+    $id = $_GET["id"];
+    $db = getDB();
+    $stmt = $db->prepare("SELECT * FROM Cart where id = :id");
+    $r = $stmt->execute([":id" => $id]);
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+}
+//get Products for dropdown
+$db = getDB();
+$stmt = $db->prepare("SELECT id,name,price from Products LIMIT 10");
+$r = $stmt->execute();
+$products = $stmt->fetchAll(PDO::FETCH_ASSOC);
+?>
 
 <div class="form">
     <form method="POST">
