@@ -3,7 +3,7 @@
 if (!has_role("Admin")) {
     //this will redirect to login and kill the rest of this script (prevent it from executing)
     flash("You don't have permission to access this page");
-    die(header("Location: ../login.php"));
+    die(header("Location: login.php"));
 }
 ?>
 <?php
@@ -57,8 +57,8 @@ if (isset($_POST["search"]) && !empty($query)) {
                         <div><?php safer_echo($r["user_id"]); ?></div>
                     </div>
                     <div>
-                        <a type="button" href="test_edit_product.php?id=<?php safer_echo($r['id']); ?>">Edit</a>
-                        <a type="button" href="test_view_product.php?id=<?php safer_echo($r['id']); ?>">View</a>
+                        <a type="button" href="Test/test_edit_product.php?id=<?php safer_echo($r['id']); ?>">Edit</a>
+                        <a type="button" href="Test/test_view_product.php?id=<?php safer_echo($r['id']); ?>">View</a>
                     </div>
                 </div>
             <?php endforeach; ?>
