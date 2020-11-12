@@ -62,8 +62,7 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 <div class="form">
     <form method="POST">
-	<label>Cart ID</label>
-        <input name="cart_id" placeholder="ID" value="<?php echo $result["id"]; ?>"/>
+	<label>Cart ID <?php echo $result["id"]; ?></label>
         <label for="prod-label">ProductID</label>
 	<select name="product_id" value="<?php echo $result["product_id"];?>" >
             <option value="-1">None</option>
