@@ -36,7 +36,7 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 	<label for="prod-label">Quantity</label>
 	<input type="number" min="1" name="quantity"/>
 	<label for="prod-label">Price</label>
-	<input type="number" name="price" value=<?php echo $result["price"];?>">
+	<input type="number" name="price" value=<?php safer_echo($product["price"]);?>">
 	<input type="submit" name="save" value="Create"/>
 </form>
 </div>
