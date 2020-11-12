@@ -14,10 +14,8 @@ if (!has_role("Admin")) {
 	<input name="product_id" placeholder="Product ID"/>
 	<label for="prod-label">Quantity</label>
 	<input type="number" min="0" name="quantity"/>
-	<label for ="prod-label">Price</label>
+	<label for="prod-label">Price</label>
 	<input type="number" min="0.00" value="0.00" step=".01" name="price"/>
-
-
 	<input type="submit" name="save" value="Create"/>
 </form>
 </div>
