@@ -3,7 +3,7 @@
 if (!has_role("Admin")) {
     //this will redirect to login and kill the rest of this script (prevent it from executing)
     flash("You don't have permission to access this page");
-    die(header("Location: login.php"));
+    die(header("Location: ../login.php"));
 }
 ?>
 <?php
@@ -71,4 +71,4 @@ if(isset($id)){
 </form>
 </div>
 
-<?php require(__DIR__ . "/../partials/flash.php");
+<?php require(__DIR__ . "../partials/flash.php");
