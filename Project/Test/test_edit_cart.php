@@ -64,8 +64,7 @@ $eggs = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
     <h3>Edit Cart</h3>
     <form method="POST">
-        <label for="prod-label">Name</label>
-        <input name="name" placeholder="Name" value="<?php echo $result["name"]; ?>"/>
+
         <label for="prod-label">Product</label>
         <select name="product_id" value="<?php echo $result["product_id"];?>" >
             <option value="-1">None</option>
