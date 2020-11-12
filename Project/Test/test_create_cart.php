@@ -35,6 +35,8 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </select>
 	<label for="prod-label">Quantity</label>
 	<input type="number" min="1" name="quantity"/>
+	<label for="prod-label">Price</label>
+	<input type="number" name="price" value=<?php echo $result["price"];?>">
 	<input type="submit" name="save" value="Create"/>
 </form>
 </div>
@@ -44,7 +46,7 @@ if(isset($_POST["save"])){
 	//TODO add proper validation/checks
 	$product = $_POST["product_id"];
 	$quantity = $_POST["quantity"];
-	$price = $result["price"];
+	$price = $_POST["price"];
 	$user = get_user_id();
 	$db = getDB();
 	$stmt = $db->prepare("INSERT INTO Cart (product_id,quantity,price,user_id) VALUES(:product_id,:quantity,:price,:user)");
