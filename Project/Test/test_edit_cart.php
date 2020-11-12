@@ -63,6 +63,13 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <div class="form">
     <form method="POST">
         <label for="prod-label">ProductID</label>
+	<select name="product_id" value="<?php echo $result["product_id"];?>" >
+            <option value="-1">None</option>
+            <?php foreach ($products as $product): ?>
+                <option value="<?php safer_echo($product["id"]); ?>"
+                ><?php safer_echo($product["id"]); ?></option>
+            <?php endforeach; ?>
+        </select>
         <label for="prod-label">Quantity</label>
         <input type="number" min="0" name="quantity" value="<?php echo $result["quantity"]; ?>"/>
         <input type="submit" name="save" value="Update"/>
