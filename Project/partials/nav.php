@@ -18,8 +18,8 @@
 	<div class="dropdown">
 	<button style="float:right" class="dropbtn">Products<i class="fa fa-caret-down"></i></button>
 	<div class="dropdown-content">
-	<a class="active" href=<?php echo getURL("Test/test_create_product.php");?>>Create Product</a>
-	<a class="active" href=<?php echo getURL("Test/test_list_product.php");?>>List Product</a>
+	<a class="active" href="Test/test_create_product.php")>Create Product</a>
+	<a class="active" href="Test/test_list_product.php")>List Product</a>
 	</div>
 	</div>
     <?php endif; ?>
