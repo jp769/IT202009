@@ -23,6 +23,7 @@ if(isset($_POST["save"])){
 	    $product = null;
 	}
 	$quantity = $_POST["quantity"];
+	$price = $product["price"];
 	$user = get_user_id();
 	$db = getDB();
 	if (isset($id)) {
