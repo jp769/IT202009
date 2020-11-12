@@ -58,7 +58,7 @@ if (isset($_POST["search"]) && !empty($query)) {
                     </div>
                     <div>
                         <a type="button" href=<?php echo getURL("Test/test_edit_product.php");?>?id=<?php safer_echo($r['id']); ?>>Edit</a>
-                        <a type="button" href=<?php echo getURL("Test/test_view_product.php");?>?id=<?php safer_echo($r['id']); ?>View</a>
+                        <a type="button" href=<?php echo getURL("Test/test_view_product.php");?>?id=<?php safer_echo($r['id']); ?>>View</a>
                     </div>
                 </div>
             <?php endforeach; ?>
