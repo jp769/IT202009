@@ -44,12 +44,14 @@ if(isset($_POST["save"])){
 	//TODO add proper validation/checks
 	$product = $_POST["product_id"];
 	$quantity = $_POST["quantity"];
+	$price = $result["price"];
 	$user = get_user_id();
 	$db = getDB();
-	$stmt = $db->prepare("INSERT INTO Cart (product_id,quantity,user_id) VALUES(:product_id,:quantity,:user)");
+	$stmt = $db->prepare("INSERT INTO Cart (product_id,quantity,price,user_id) VALUES(:product_id,:quantity,:price,:user)");
 	$r = $stmt->execute([
 		":product_id"=>$product,
 		":quantity"=>$quantity,
+		":price"=>$price,
 		":user"=>$user
 	]);
 	if($r){
