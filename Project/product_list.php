@@ -8,7 +8,7 @@ if (isset($_POST["query"])) {
 }
 if (isset($_POST["search"]) && !empty($query)) {
     $db = getDB();
-    $stmt = $db->prepare("SELECT id,name,quantity,price,description,category,visibilty user_id from Products WHERE name like :q LIMIT 10");
+    $stmt = $db->prepare("SELECT id,name,quantity,price,description,category,visibilty, user_id from Products WHERE name like :q LIMIT 10");
     $r = $stmt->execute([":q" => "%$query%"]);
     if ($r) {
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -30,7 +30,7 @@ if (isset($_POST["search"]) && !empty($query)) {
             <div class="list-group">
                 <?php foreach ($results as $r): ?>
 
-                <?php if ((has_role('Admin')) || ($r["visibility"] == "true")): ?>
+                <?php if (($r["visibility"] == "true") || (has_role('Admin'))): ?>
                     <div class="list-group-item">
                         <div>
                             <div>Name:</div>
