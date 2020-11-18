@@ -5,7 +5,7 @@ $query = "";
 $results = [];
 if (isset($_POST["query"])) {
     $query = $_POST["query"];
-    $sort = $_POST["price_sort"]
+    $sort = $_POST["price_sort"];
 }
 if (isset($_POST["search"]) && !empty($query)) {
     $db = getDB();
@@ -22,12 +22,13 @@ if (isset($_POST["search"]) && !empty($query)) {
 
     <form method="POST">
         <input name="query" placeholder="Search" value="<?php safer_echo($query); ?>"/>
-        <input type="submit" value="Search" name="search"/>
-        <select name="price_sort" value="" placeholder="Sort by:">
+
+        <select name="price_sort" value="<?php safer_echo($sort);?>" placeholder="Sort by:">
             <option value="-1">None</option>
             <option value="ASC">Ascending Price</option>
             <option value="DESC">Descending Price</option>
         </select>
+        <input type="submit" value="Search" name="search"/>
     </form>
 
 
