@@ -13,7 +13,7 @@ if (isset($_POST["query"])) {
 if (isset($_POST["search"]) && !empty($query)) {
     $db = getDB();
     $stmt = $db->prepare("SELECT id,name,quantity,price,description,user_id,visibility,category from Products WHERE name like :q or category like :q LIMIT 10");
-    $r = $stmt->execute([":q" => "%$query%"]);
+    $r = $stmt->execute([":q" => "%$query%", ":sort" => "%$sort%"]);
     if ($r) {
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
@@ -25,7 +25,7 @@ if (isset($_POST["search"]) && !empty($query)) {
 
     <form method="POST">
         <input name="query" placeholder="Search" value="<?php safer_echo($query); ?>"/>
-
+        <label for="p_Sort">Choose to Sort by Price:</label>
         <select name="price_sort" placeholder="Sort by:">
             <option value="">None</option>
             <option value="ASC">Ascending Price</option>
