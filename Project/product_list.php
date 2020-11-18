@@ -6,12 +6,13 @@ $sort = "";
 $results = [];
 if (isset($_POST["query"])) {
     $query = $_POST["query"];
-    $sort = $_POST["price_sort"];
+    if(isset($_POST["price_sort"]))
+        $sort = $_POST["price_sort"];
 }
 if (isset($_POST["search"]) && !empty($query)) {
     $db = getDB();
-    $stmt = $db->prepare("SELECT id,name,quantity,price,description,user_id,visibility,category from Products WHERE name like :q or category like :q LIMIT 10");
-    $r = $stmt->execute([":q" => "%$query%"]);
+    $stmt = $db->prepare("SELECT id,name,quantity,price,description,user_id,visibility,category from Products WHERE name like :q or category like :q ORDER BY price :sort LIMIT 10");
+    $r = $stmt->execute([":q" => "%$query%", ":sort" => "%$sort%"]);
     if ($r) {
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
