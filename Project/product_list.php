@@ -27,6 +27,7 @@ if (isset($_POST["search"]) && !empty($query)) {
             <option value="-1">None</option>
             <option value="ASC">Ascending Price</option>
             <option value="DESC">Descending Price</option>
+        </select>
     </form>
 
 
