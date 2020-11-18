@@ -5,7 +5,7 @@ $query = "";
 $results = [];
 if (isset($_POST["query"])) {
     $query = $_POST["query"];
-    $sort = " ";
+    $sort = "None";
     if(isset($_POST["price_sort"])) {
         $sort = $_POST["price_sort"];
     }
@@ -13,8 +13,8 @@ if (isset($_POST["query"])) {
 }
 if (isset($_POST["search"]) && !empty($query)) {
     $db = getDB();
-    $stmt = $db->prepare("SELECT id,name,quantity,price,description,user_id,visibility,category from Products WHERE name like :q or category like :q ORDER BY price :sort LIMIT 10");
-    $r = $stmt->execute([":q" => "%$query%",":sort" => "%$sort%"]);
+    $stmt = $db->prepare("SELECT id,name,quantity,price,description,user_id,visibility,category from Products WHERE name like :q or category like :q LIMIT 10");
+    $r = $stmt->execute([":q" => "%$query%"]);
     if ($r) {
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
@@ -27,7 +27,7 @@ if (isset($_POST["search"]) && !empty($query)) {
     <form method="POST">
         <input name="query" placeholder="Search" value="<?php safer_echo($query); ?>"/>
 
-        <select name="price_sort" placeholder="Sort by:">
+        <select name="price_sort" value="<?php safer_echo($sort);?>" placeholder="Sort by:">
             <option value="-1">None</option>
             <option value="ASC">Ascending Price</option>
             <option value="DESC">Descending Price</option>
