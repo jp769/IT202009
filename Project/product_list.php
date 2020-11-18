@@ -15,8 +15,6 @@ if (isset($_POST["search"]) && !empty($query)) {
     $r = $stmt->execute([":q" => "%$query%"]);
     if ($r) {
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        if(isset($_POST["price_sort"]))
-            $results .= "ORDER BY $sort";
     }
     else {
         flash("There was a problem fetching the results");
