@@ -2,14 +2,11 @@
 
 <?php
 $query = "";
+$sort = "";
 $results = [];
 if (isset($_POST["query"])) {
     $query = $_POST["query"];
-    $sort = "None";
-    if(isset($_POST["price_sort"])) {
-        $sort = $_POST["price_sort"];
-    }
-
+    $sort = $_POST["price_sort"];
 }
 if (isset($_POST["search"]) && !empty($query)) {
     $db = getDB();
