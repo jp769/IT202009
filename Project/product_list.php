@@ -27,7 +27,7 @@ if (isset($_POST["search"]) && !empty($query)) {
         <input name="query" placeholder="Search" value="<?php safer_echo($query); ?>"/>
 
         <select name="price_sort" placeholder="Sort by:">
-            <option value="-1">None</option>
+            <option value="">None</option>
             <option value="ASC">Ascending Price</option>
             <option value="DESC">Descending Price</option>
         </select>
