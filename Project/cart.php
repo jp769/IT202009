@@ -41,8 +41,8 @@ if (is_logged_in()) {
             </div>
         </div>
     </div>
-<?php else: ?>
-    <p>Error looking up id...</p>
+    <?php endforeach; ?>
+
 <?php endif; ?>
 
 <?php require(__DIR__ . "/partials/flash.php");
