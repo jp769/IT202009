@@ -28,7 +28,7 @@ if (isset($_POST["search"]) && !empty($query)) {
     <form method="POST">
         <input name="query" placeholder="Search" value="<?php safer_echo($query); ?>"/>
         <label for="p_Sort">Choose to Sort by Price:</label>
-        <select name="price_sort" placeholder="Sort by:">
+        <select name="price_sort" >
             <option value="">None</option>
             <option value="ASC">Ascending Price</option>
             <option value="DESC">Descending Price</option>
@@ -48,26 +48,17 @@ if (isset($_POST["search"]) && !empty($query)) {
                             <div>Name:</div>
                             <div><?php safer_echo($r["name"]); ?></div>
                         </div>
-                        <div>
-                            <div>Quantity:</div>
-                            <div><?php safer_echo($r["quantity"]); ?></div>
-                        </div>
+
                         <div>
                             <div>Price:</div>
                             <div><?php safer_echo($r["price"]); ?></div>
                         </div>
-                        <div>
-                            <div>Description:</div>
-                            <div><?php safer_echo($r["description"]); ?></div>
-                        </div>
+
                         <div>
                             <div>Category:</div>
                             <div><?php safer_echo($r["category"]); ?></div>
                         </div>
-                        <div>
-                            <div>Owner Id:</div>
-                            <div><?php safer_echo($r["user_id"]); ?></div>
-                        </div>
+
                         <?php if (has_role("Admin")): ?>
                         <div>
                             <div>Visibility</div>
@@ -76,8 +67,10 @@ if (isset($_POST["search"]) && !empty($query)) {
                         <?php endif;?>
 
                         <div>
-                            <a type="button" >Edit</a>
-                            <a type="button" >View</a>
+                            <?php if (has_role("Admin")): ?>
+                                <a type="button" href=<?php echo getURL("edit_product.php");?>?id=<?php safer_echo($r['id']); ?>>Edit</a>
+                            <?php endif;?>
+                            <a type="button" href="<?php echo getURL("view_product.php");?>?id=<?php safer_echo($r['id']); ?>">View</a>
                         </div><br>
                     </div>
                 <?php endif;?>
