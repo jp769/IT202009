@@ -43,6 +43,4 @@ if (is_logged_in()) {
     </div>
     <?php endforeach; ?>
 
-<?php endif; ?>
-
 <?php require(__DIR__ . "/partials/flash.php");
