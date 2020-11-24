@@ -6,18 +6,20 @@ $sort = "";
 $results = [];
 if (isset($_POST["query"])) {
     $query = $_POST["query"];
+
     if(isset($_POST["price_sort"]))
         $sort = $_POST["price_sort"];
 }
 if (isset($_POST["search"]) && !empty($query)) {
     $db = getDB();
-    if(!isset($_POST["price_sort"])) {
-        $stmt = $db->prepare("SELECT id,name,quantity,price,description,user_id,visibility,category from Products WHERE name like :q or category like :q  LIMIT 10");
-        $r = $stmt->execute([":q" => "%$query%"]);
+    if(isset($_POST["price_sort"])) {
+        $stmt = $db->prepare("SELECT id,name,quantity,price,description,user_id,visibility,category from Products WHERE name like :q or category like :q  LIMIT 10 ORDER BY :sort");
+        $r = $stmt->execute([":q" => "%$query%", ":sort" => "%$sort%"]);
+
     }
     else{
-        $stmt = $db->prepare("SELECT id,name,quantity,price,description,user_id,visibility,category from Products ORDER BY :sort WHERE name like :q or category like :q  LIMIT 10");
-        $r = $stmt->execute([":q" => "%$query%", ":sort" => "%$sort%"]);
+        $stmt = $db->prepare("SELECT id,name,quantity,price,description,user_id,visibility,category from Products WHERE name like :q or category like :q  LIMIT 10");
+        $r = $stmt->execute([":q" => "%$query%"]);
     }
 
     if ($r) {
