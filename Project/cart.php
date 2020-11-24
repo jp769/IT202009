@@ -26,6 +26,7 @@ if (is_logged_in()) {
 ?>
 <h3>Cart</h3>
 <?php if (count($result) > 0): ?>
+<?php $total = 0; ?>
     <?php foreach ($result as $r): ?>
     <div class="card">
         <div class="card-title">
@@ -37,10 +38,14 @@ if (is_logged_in()) {
                 <div>Quantity: <?php safer_echo($r["quantity"]); ?></div>
                 <div>Price: <?php safer_echo($r["price"]); ?></div>
                 <div>Subtotal: <?php echo ($r["quantity"] * $r["price"]); ?></div>
+                <?php $total += ($r['quantity'] * $r['price']); ?>
             </div>
         </div>
     </div>
     <?php endforeach; ?>
+    <div class="Total">
+        <p> <?php safer_echo($total); ?>
+    </div>
 <?php else: ?>
     <p>Empty Cart</p>
 <?php endif; ?>
