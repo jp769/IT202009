@@ -25,18 +25,19 @@ if (is_logged_in()) {
 }
 ?>
 <h3>Cart</h3>
-<?php if (isset($result) && !empty($result)): ?>
+<?php if (count($result) > 0): ?>
+    <?php foreach ($result as $r): ?>
     <div class="card">
         <div class="card-title">
-            <?php safer_echo($result["product_id"]); ?>
+            <?php safer_echo($r["product_id"]); ?>
         </div>
         <div class="card-body">
             <div>
                 <p> - Info - </p>
-                <div>Name:<a href=""> <?php safer_echo($result["prod"]);?></a></div>
-                <div>Quantity: <?php safer_echo($result["quantity"]); ?></div>
-                <div>Price: <?php safer_echo($result["price"]); ?></div>
-                <div>Subtotal: <?php $result["quantity"] * $result["price"] ?></div>
+                <div>Name:<a href=""> <?php safer_echo($r["prod"]);?></a></div>
+                <div>Quantity: <?php safer_echo($r["quantity"]); ?></div>
+                <div>Price: <?php safer_echo($r["price"]); ?></div>
+                <div>Subtotal: <?php echo ($r["quantity"] * $r["price"]); ?></div>
             </div>
         </div>
     </div>
