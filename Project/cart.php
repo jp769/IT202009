@@ -8,9 +8,8 @@ if (!is_logged_in()) {
 ?>
 <?php
 
-//Load cart into rows
-
-if (isset($_GET["id"])) {
+if (is_logged_in()) {
+    $user_id = $_SESSION["user"]["id"];
     $id = $_GET["id"];
 }
 ?>
