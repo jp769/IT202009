@@ -25,7 +25,7 @@ if (is_logged_in()) {
 }
 ?>
 <h3>Cart</h3>
-<?php if (count($result) > 0): ?>
+<?php echo((count($result)));?>
     <?php foreach ($result as $r): ?>
     <div class="card">
         <div class="card-title">
