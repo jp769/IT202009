@@ -8,18 +8,15 @@ if (!is_logged_in()) {
 ?>
 <?php
 
-if (is_logged_in()) {
-    $user_id = $_SESSION["user"]["id"];
-    $id = $_GET["id"];
-}
 ?>
 <?php
 //fetching
 $result = [];
-if (isset($id)) {
+if (is_logged_in()) {
     $db = getDB();
-    $stmt = $db->prepare("SELECT cart.id,cart.quantity,cart.price,cart.product_id, Users.username, Product.name as prod FROM Cart as cart JOIN Users on cart.user_id = Users.id LEFT JOIN Products Product on Product.id = cart.product_id where cart.id = :id");
-    $r = $stmt->execute([":id" => $id]);
+    $user_id = $_SESSION["user"]["id"];
+    $stmt = $db->prepare("SELECT cart.id, cart.quantity, cart.price, cart.product_id, cart.user_id FROM Cart as cart JOIN Users on cart.user_id = Users.id LEFT JOIN Products Product on Product.id = cart.product_id where cart.user_id = :user_id");
+    $r = $stmt->execute([":user_id" => $user_id]);
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
     if (!$result) {
         $e = $stmt->errorInfo();
