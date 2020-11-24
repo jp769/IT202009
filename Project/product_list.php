@@ -68,9 +68,9 @@ if (isset($_POST["search"]) && !empty($query)) {
 
                         <div>
                             <?php if (has_role("Admin")): ?>
-                                <a type="button" href=<?php echo getURL("edit_product.php");?>?id=<?php safer_echo($r['id']); ?>>Edit</a>
+                                <a type="button" href=<?php echo getURL("product_edit.php");?>?id=<?php safer_echo($r['id']); ?>>Edit</a>
                             <?php endif;?>
-                            <a type="button" href="<?php echo getURL("view_product.php");?>?id=<?php safer_echo($r['id']); ?>">View</a>
+                            <a type="button" href="<?php echo getURL("product_view.php");?>?id=<?php safer_echo($r['id']); ?>">View</a>
                         </div><br>
                     </div>
                 <?php endif;?>
