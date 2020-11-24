@@ -25,11 +25,10 @@ if (is_logged_in()) {
 }
 ?>
 <h3>Cart</h3>
-<?php echo((count($result)));?>
+<?php if (count($result) > 0): ?>
     <?php foreach ($result as $r): ?>
     <div class="card">
         <div class="card-title">
-            <?php safer_echo($r["product_id"]); ?>
         </div>
         <div class="card-body">
             <div>
@@ -42,5 +41,8 @@ if (is_logged_in()) {
         </div>
     </div>
     <?php endforeach; ?>
+<?php else: ?>
+    <p>Empty Cart</p>
+<?php endif; ?>
 
 <?php require(__DIR__ . "/partials/flash.php");
