@@ -34,7 +34,7 @@ if (is_logged_in()) {
         <div class="card-body">
             <div>
                 <p> - Info - </p>
-                <div>Name:<a href=<?php echo getURL("product_edit.php");?>?id=<?php safer_echo($r['product_id']); ?>> <?php safer_echo($r["prod"]);?></a></div>
+                <div>Name:<a href=<?php echo getURL("product_view.php");?>?id=<?php safer_echo($r['product_id']); ?>> <?php safer_echo($r["prod"]);?></a></div>
                 <div>Quantity: <?php safer_echo($r["quantity"]); ?></div>
                 <div>Price: <?php safer_echo($r["price"]); ?></div>
                 <div>Subtotal: <?php echo ($r["quantity"] * $r["price"]); ?></div>
