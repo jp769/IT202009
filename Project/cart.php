@@ -15,21 +15,29 @@ $db = getDB();
 
 if(isset($_POST["delete"])){
 //    $stmt = $db->prepare("DELETE FROM Cart where id = :id");
-//    $r = $stmt->execute([":id"=>$_POST["cartId"]]);
+//    $r = $stmt->execute([":id"=>$_POST["cartID"]]);
     //fix for example bug
-    $stmt = $db->prepare("DELETE FROM F20_Cart where id = :id AND user_id = :uid");
+    $stmt = $db->prepare("DELETE FROM Cart where id = :id AND user_id = :uid");
     $r = $stmt->execute([":id"=>$_POST["cartID"], ":uid"=>get_user_id()]);
     if($r){
         flash("Deleted item from cart", "success");
     }
 }
 
+if(isset($_POST["update"])){
+    $stmt = $db->prepare("UPDATE Cart set quantity = :q where id = :id");
+    $r = $stmt->execute([":id"=>$_POST["cartID"], ":q"=>$_POST["quantity"]]);
+    if($r){
+        flash("Updated quantity", "success");
+    }
+}
+
 //fetching
 $result = [];
 
-$user_id = $_SESSION["user"]["id"];
+
 $stmt = $db->prepare("SELECT cart.id, cart.quantity, cart.price, (cart.quantity * cart.price) as subtotal, cart.product_id, cart.user_id,Product.name as prod FROM Cart as cart LEFT JOIN Products Product on Product.id = cart.product_id where cart.user_id = :user_id");
-$r = $stmt->execute([":user_id" => $user_id]);
+$r = $stmt->execute([":user_id" => get_user_id()]);
 $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 if (!$result) {
     $e = $stmt->errorInfo();
@@ -42,7 +50,7 @@ if (!$result) {
 <?php $total = 0; ?>
     <?php foreach ($result as $r): ?>
     <div class="card">
-        <div class="card-title">
+        <div class="card-title"> <?php safer_echo($r['id']);?>
         </div>
         <form method="POST">
         <div class="card-body">
