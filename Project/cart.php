@@ -77,18 +77,18 @@ if (!$result) {
             <input type="hidden" name="cartID" value="<?php safer_echo($r["id"]);?>"/>
             <input type="submit" class="btn btn-danger" name="delete" value="Delete Item"/>
             </form>
-        </div>>
+        </div>
     </div>
     <?php endforeach; ?>
     <div class="Total">
         <div> Total: <?php safer_echo($total); ?> </div>
     </div>
-    <form method="POST">
-        <input type="hidden" name="userID" value="<?php safer_echo($r["user_id"]);?>"/>
-        <input type="submit" class="btn btn-danger" name="deleteAll" value="Delete Cart"/>
-    </form>
-    <div>
 
+    <div>
+        <form method="POST">
+            <input type="hidden" name="userID" value="<?php safer_echo($r["user_id"]); ?>"/>
+            <input type="submit" class="btn btn-danger" name="deleteAll" value="Delete Cart"/>
+        </form>
     </div>
 <?php else: ?>
     <p>Empty Cart</p>

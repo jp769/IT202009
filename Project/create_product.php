@@ -8,24 +8,24 @@ if (!has_role("Admin")) {
 
     <div class="form">
         <form method="POST">
-            <label for="prod-label">Name
+            <label for="prod-label">Name</label>
             <input name="name" maxlength="60" placeholder="Name"/>
-            </label>
-            <label for="prod-label">Quantity
+
+            <label for="prod-label">Quantity</label>
             <input type="number" min="0" name="quantity"/>
-            </label>
-            <label for ="prod-label">Price
+
+            <label for ="prod-label">Price</label>
             <input type="number" min="0.00" value="0.00" step=".01" name="price"/>
-            </label>
-            <label for ="prod-label">Description
+
+            <label for ="prod-label">Description</label>
             <input type="text" name="description" placeholder="Small Description"/>
-            </label>
-            <label for="prod-label">Category
+
+            <label for="prod-label">Category</label>
             <input type="text" name="category" maxlength="100" placeholder="Category"/>
-            </label>
-            <label for="prod-label">Visibility
+
+            <label for="prod-label">Visibility</label>
             <input type="text" name="visibility" maxlength="5" placeholder="(true/false)"/>
-            </label>
+
             <input type="submit" name="save" value="Create"/>
         </form>
     </div>
