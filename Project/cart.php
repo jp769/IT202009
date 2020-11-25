@@ -34,7 +34,7 @@ if (is_logged_in()) {
         <div class="card-body">
             <div>
                 <p> - Info - </p>
-                <div>Name:<a href=""> <?php safer_echo($r["prod"]);?></a></div>
+                <div>Name:<a href=<?php echo getURL("product_edit.php");?>?id=<?php safer_echo($r['product_id']); ?>> <?php safer_echo($r["prod"]);?></a></div>
                 <div>Quantity: <?php safer_echo($r["quantity"]); ?></div>
                 <div>Price: <?php safer_echo($r["price"]); ?></div>
                 <div>Subtotal: <?php echo ($r["quantity"] * $r["price"]); ?></div>
@@ -44,7 +44,7 @@ if (is_logged_in()) {
     </div>
     <?php endforeach; ?>
     <div class="Total">
-        <p> <?php safer_echo($total); ?>
+        <div> Total: <?php safer_echo($total); ?> </div>
     </div>
 <?php else: ?>
     <p>Empty Cart</p>
