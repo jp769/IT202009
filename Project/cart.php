@@ -50,8 +50,7 @@ if (!$result) {
 <?php $total = 0; ?>
     <?php foreach ($result as $r): ?>
     <div class="card">
-        <div class="card-title"> <?php safer_echo($r['id']);?>
-        </div>
+        <div class="card-title"></div>
         <form method="POST">
         <div class="card-body">
             <div>
