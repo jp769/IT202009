@@ -18,6 +18,10 @@ if (isset($_POST["search"]) && !empty($query)) {
         $stmt = $db->prepare("SELECT id,name,quantity,price,description,user_id,visibility,category from Products WHERE name like :q or category like :q ORDER BY price ASC LIMIT 10");
         $r = $stmt->execute([":q" => "%$query%"]);
     }
+    elseif ($sort == "DEC"){
+        $stmt = $db->prepare("SELECT id,name,quantity,price,description,user_id,visibility,category from Products WHERE name like :q or category like :q ORDER BY price DESC LIMIT 10");
+        $r = $stmt->execute([":q" => "%$query%"]);
+    }
     else {
         $stmt = $db->prepare("SELECT id,name,quantity,price,description,user_id,visibility,category from Products WHERE name like :q or category like :q  LIMIT 10");
         $r = $stmt->execute([":q" => "%$query%"]);
