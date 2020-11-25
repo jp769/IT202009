@@ -107,7 +107,7 @@ if (isset($_POST["search"]) && !empty($query)) {
                             <a type="button" href="<?php echo getURL("product_view.php");?>?id=<?php safer_echo($r['id']); ?>">View</a>
                         </div><br>
 
-                        <?php if (is_logged_in()): ?>
+                        <?php if ((is_logged_in()) && ($r["visibility"] == "true")): ?>
                             <div>
                                 <button type="button" onclick="addToCart(<?php echo $r["id"];?>,<?php echo $r["price"];?>);" class="btn btn-primary btn-lg">Add to Cart</button>
                             </div>
