@@ -22,6 +22,14 @@ if(isset($_POST["delete"]) || (isset($_POST["update"]) && ($_POST["quantity"] ==
     }
 }
 
+if(isset($_POST["deleteAll"])){
+    $stmt = $db->prepare("DELETE FROM Cart where user_id = :uid");
+    $r = $stmt->execute([":id"=>$_POST["cartID"], ":uid"=>get_user_id()]);
+    if($r){
+        flash("Deleted item from cart", "success");
+    }
+}
+
 if(isset($_POST["update"])){
     $stmt = $db->prepare("UPDATE Cart set quantity = :q where id = :id");
     $r = $stmt->execute([":id"=>$_POST["cartID"], ":q"=>$_POST["quantity"]]);
@@ -74,6 +82,13 @@ if (!$result) {
     <?php endforeach; ?>
     <div class="Total">
         <div> Total: <?php safer_echo($total); ?> </div>
+    </div>
+    <form method="POST">
+        <input type="hidden" name="userID" value="<?php safer_echo($r["user_id"]);?>"/>
+        <input type="submit" class="btn btn-danger" name="deleteAll" value="Delete Cart"/>
+    </form>
+    <div>
+
     </div>
 <?php else: ?>
     <p>Empty Cart</p>
