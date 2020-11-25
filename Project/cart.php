@@ -26,7 +26,7 @@ if(isset($_POST["deleteAll"])){
     $stmt = $db->prepare("DELETE FROM Cart where user_id = :uid");
     $r = $stmt->execute([":uid"=>get_user_id()]);
     if($r){
-        flash("Deleted item from cart", "success");
+        flash("Deleted cart", "success");
     }
 }
 
