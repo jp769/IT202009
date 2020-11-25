@@ -8,7 +8,7 @@ CREATE TABLE Cart
     created    datetime       default current_timestamp,
     modified   datetime       default current_timestamp on update current_timestamp,
     primary key (id),
-    foreign key (product_id) references Products (id),
-    foreign key (user_id) references Users (id),
+    foreign key (product_id) references Products (id) ON DELETE CASCADE ,
+    foreign key (user_id) references Users (id) ON DELETE CASCADE ,
     UNIQUE KEY (product_id, user_id)
 )
