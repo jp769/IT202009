@@ -14,8 +14,8 @@ if(isset($_POST["itemId"])){
         $name = $result["name"];
         $price = $result["price"];
         $quantity = 1;
-        $stmt = $db->prepare("INSERT INTO Cart (user_id, product_id, quantity) VALUES(:user_id, :product_id, :price, :quantity) ON DUPLICATE KEY UPDATE quantity = quantity + 1, price = :price");
-        $r = $stmt->execute([":user_id"=>get_user_id(), ":product_id"=>$itemId, ":price"=>$price, ":quantity"=>$quantity]);
+        $stmt = $db->prepare("INSERT INTO Cart (user_id, product_id, price, quantity) VALUES(:user_id, :product_id, :price, :quantity) ON DUPLICATE KEY UPDATE quantity = quantity + 1, price = :price");
+        $r = $stmt->execute([":user_id"=>get_user_id(), ":product_id"=>$itemId, ":price"=>$price, ":quantity"=>1]);
         if ($r) {
             $response = ["status" => 200, "message" => "Added $name to cart"];
             echo json_encode($response);
