@@ -13,7 +13,7 @@ if (!is_logged_in()) {
 
 $db = getDB();
 
-if(isset($_POST["delete"]) || ($_POST["quantity"] == 0)){
+if(isset($_POST["delete"]) || (isset($_POST["update"]) && ($_POST["quantity"] == 0))){
 //    $stmt = $db->prepare("DELETE FROM Cart where id = :id");
 //    $r = $stmt->execute([":id"=>$_POST["cartID"]]);
     //fix for example bug
