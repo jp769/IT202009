@@ -25,7 +25,7 @@ if(isset($_POST["update"])){
 $result = [];
 
 
-$stmt = $db->prepare("SELECT cart.id, cart.quantity, cart.price, (cart.quantity * cart.price) as total, cart.product_id, cart.user_id, Product.quantity as prodQuantity, Product.name as prod FROM Cart as cart LEFT JOIN Products Product on Product.id = cart.product_id where cart.user_id = :user_id");
+$stmt = $db->prepare("SELECT cart.id, cart.quantity, cart.price, (cart.quantity * cart.price) as subtotal, cart.product_id, cart.user_id, Product.quantity as prodQuantity, Product.name as prod FROM Cart as cart LEFT JOIN Products Product on Product.id = cart.product_id where cart.user_id = :user_id");
 $r = $stmt->execute([":user_id" => get_user_id()]);
 $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 if (!$result) {
@@ -35,7 +35,7 @@ if (!$result) {
 ?>
 
 <?php if (count($result) > 0): ?>
-<?php $total = 0; ?>
+<?php $total = 0; $boolCheckout=True;?>
 <?php foreach ($result as $r): ?>
 <div class="card">
     <div class="card-title"></div>
@@ -44,6 +44,7 @@ if (!$result) {
                 <div>
                     <div>Name:<a href=<?php echo getURL("product_view.php");?>?id=<?php safer_echo($r['product_id']); ?>> <?php safer_echo($r["prod"]);?></a></div>
                     <?php if($r['quantity'] > $r['prodQuantity']): ?>
+                        <?php $boolCheckout = False;?>
                         <div><input type = "number" min="0" name="quantity" value="<?php safer_echo($r["quantity"]); ?>"/>
                             <input type="hidden" name="cartID" value="<?php echo $r["id"];?>"/>
                         </div>
@@ -62,7 +63,7 @@ if (!$result) {
     <div class="Total">
         <div> Total: <?php safer_echo($total); ?> </div>
     </div>
-
+<?php if($boolCheckout): ?>
 <form>
     <label for="adr"><i class="fa fa-address-card-o"></i> Address</label>
     <input type="text" id="adr" name="address" placeholder="123 Example Street">
@@ -75,3 +76,6 @@ if (!$result) {
     <input type="number" id="zip" name="zip" placeholder="10001" maxlength="5">
 
 </form>
+<?php else: ?>
+    <p2>Change Quantity</p2>
+<?php endif; ?>
