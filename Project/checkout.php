@@ -46,7 +46,7 @@ if (!$result) {
                     <div>Product: <?php safer_echo($r["prod"]);?></div>
                     <?php if($r['prodQuantity'] < $r['quantity']): ?>
                     <?php $boolCheckout = False; ?>
-                    <div>Quantity<input type = "number" min="0" name="quantity" value="<?php safer_echo($r["quantity"]); ?>"/>
+                    <div>Quantity<input type = "number" style="width: 15%"min="0" name="quantity" value="<?php safer_echo($r["quantity"]); ?>"/>
                         <input type="hidden" name="cartID" value="<?php echo $r["id"];?>"/>
                     </div>
                     <?php else: ?>
@@ -74,12 +74,12 @@ if (!$result) {
     <label for="adr"><i class="fa fa-address-card-o"></i> Address</label>
     <input type="text" id="adr" name="address" placeholder="123 Example Street">
     <label for="city"><i class="fa fa-institution"></i> City</label>
-    <input type="text" id="city" name="city" placeholder="New York">
+    <input type="text" style="width: 10%" id="city" name="city" placeholder="New York">
 
     <label for="state">State</label>
-    <input type="text" id="state" name="state" placeholder="NY" maxlength="2">
+    <input type="text" style="width: 10%" id="state" name="state" placeholder="NY" maxlength="2">
     <label for="zip">Zip</label>
-    <input type="number" id="zip" name="zip" placeholder="10001" maxlength="5">
+    <input type="number" style="width: 10%" id="zip" name="zip" placeholder="10001" maxlength="5">
 
 </form>
 <?php endif; ?>
