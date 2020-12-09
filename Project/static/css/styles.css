@@ -125,7 +125,7 @@ label[for="prod-label"] {
   display: block;
 }
 
-#adr, #city, #state, #zip {
+#adr, #city, #state, #zip, #payMethod {
     display: block;
     text-align: left;
     margin-left: initial;
