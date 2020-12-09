@@ -33,7 +33,7 @@ if (!$result) {
     flash($e[2]);
 }
 ?>
-
+<div>Checkout</div>
 <?php if (count($result) > 0): ?>
 <?php $total = 0; $boolCheckout=True;?>
 <?php foreach ($result as $r): ?>
