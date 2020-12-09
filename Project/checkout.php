@@ -46,7 +46,7 @@ if (!$result) {
                     <div>Product: <?php safer_echo($r["prod"]);?></div>
                     <?php if($r['prodQuantity'] < $r['quantity']): ?>
                     <?php $boolCheckout = False; ?>
-                    <div>Quantity<input type = "number" style="width: 15%"min="0" name="quantity" value="<?php safer_echo($r["quantity"]); ?>"/>
+                    <div>Quantity<input type = "number" style="width: 10%"min="0" name="quantity" value="<?php safer_echo($r["quantity"]); ?>"/>
                         <input type="hidden" name="cartID" value="<?php echo $r["id"];?>"/>
                     </div>
                     <?php else: ?>
@@ -70,7 +70,8 @@ if (!$result) {
         <div> Total: <?php safer_echo($total); ?> </div>
     </div>
 <?php if($boolCheckout): ?>
-<form>
+<div style="align-content: space-evenly">
+    <form>
     <label for="adr"><i class="fa fa-address-card-o"></i> Address</label>
     <input type="text" id="adr" name="address" placeholder="123 Example Street">
     <label for="city"><i class="fa fa-institution"></i> City</label>
@@ -81,5 +82,6 @@ if (!$result) {
     <label for="zip">Zip</label>
     <input type="number" style="width: 10%" id="zip" name="zip" placeholder="10001" maxlength="5">
 
-</form>
+    </form>
+</div>
 <?php endif; ?>
