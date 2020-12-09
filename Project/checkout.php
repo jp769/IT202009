@@ -43,17 +43,19 @@ if (!$result) {
             <div class="card-body">
                 <div>
                     <div>Name:<a href=<?php echo getURL("product_view.php");?>?id=<?php safer_echo($r['product_id']); ?>> <?php safer_echo($r["prod"]);?></a></div>
-                    <?php if($r['quantity'] > $r['prodQuantity']): ?>
-                        <?php $boolCheckout = False;?>
-                        <div><input type = "number" min="0" name="quantity" value="<?php safer_echo($r["quantity"]); ?>"/>
-                            <input type="hidden" name="cartID" value="<?php echo $r["id"];?>"/>
-                        </div>
-                    <?php endif; ?>
+                    <div><input type = "number" min="0" name="quantity" value="<?php safer_echo($r["quantity"]); ?>"/>
+                        <input type="hidden" name="cartID" value="<?php echo $r["id"];?>"/>
+                    </div>
+
                     <div>Price: <?php safer_echo($r["price"]); ?></div>
                     <div>Subtotal: <?php echo ($r["subtotal"]); ?></div>
                     <?php $total += ($r['quantity'] * $r['price']); ?>
                 </div>
-                <input type="submit" class="btn btn-success" name="update" value="Update">
+                <?php if($r['quantity'] > $r['prodQuantity']): ?>
+                    <?php $boolCheckout = False;?>
+                    <?php echo $r['prodQuantity'];?>
+                    <input type="submit" class="btn btn-success" name="update" value="Update">
+                <?php endif; ?>
             </div>
         </form>
     </div>
