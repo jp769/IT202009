@@ -82,4 +82,6 @@ if (!$result) {
     <input type="number" id="zip" name="zip" placeholder="10001" maxlength="5">
 
 </form>
+<?php else:?>
+<?php flash("Change Quantity on Item(s) to continue");?>
 <?php endif; ?>
