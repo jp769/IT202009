@@ -71,18 +71,18 @@ if (!$result) {
     </div>
 <?php if($boolCheckout): ?>
 <br><br>
+<p>Enter Shipping Address</p>
 <div style="align-content: space-evenly">
     <form id="address">
     <label for="adr"><i class="fa fa-address-card-o"></i> Address</label>
     <input type="text" id="adr" name="address" placeholder="123 Example Street">
     <label for="city"><i class="fa fa-institution"></i> City</label>
-    <input type="text" style="width: 10%" id="city" name="city" placeholder="New York">
+    <input type="text" id="city" name="city" placeholder="New York">
 
     <label for="state">State</label>
-    <input type="text" style="width: 10%" id="state" name="state" placeholder="NY" maxlength="2">
+    <input type="text" id="state" name="state" placeholder="NY" maxlength="2">
     <label for="zip">Zip</label>
-    <input type="number" style="width: 10%" id="zip" name="zip" placeholder="10001" maxlength="5">
-
+    <input type="number" id="zip" name="zip" placeholder="10001" maxlength="5">
     </form>
 </div>
 <?php endif; ?>
