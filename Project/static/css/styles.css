@@ -33,7 +33,7 @@ div.form {
     display: block;
     text-align: center;
 }
-div.form[class = "address"]{
+#address{
     display: block;
     text-align: left;
     padding: 12px 20px;

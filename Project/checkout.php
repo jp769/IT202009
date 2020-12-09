@@ -72,7 +72,7 @@ if (!$result) {
 <?php if($boolCheckout): ?>
 <br><br>
 <div style="align-content: space-evenly">
-    <form class="address">
+    <form id="address">
     <label for="adr"><i class="fa fa-address-card-o"></i> Address</label>
     <input type="text" id="adr" name="address" placeholder="123 Example Street">
     <label for="city"><i class="fa fa-institution"></i> City</label>
