@@ -56,7 +56,7 @@ if (!$result) {
                     <?php $total += ($r['quantity'] * $r['price']); ?>
                 </div>
                 <?php if($r['prodQuantity'] < $r['quantity']): ?>
-                    <div>Currently only have : <?php echo $r['prodQuantity'];?> Please change quantity</div>
+                    <div>Currently only have <?php echo $r['prodQuantity'];?> in stock. Please change quantity</div>
                     <input type="submit" class="btn btn-success" name="update" value="Update">
                 <?php endif; ?>
             </div>
@@ -82,5 +82,5 @@ if (!$result) {
 
 </form>
 <?php else: ?>
-    <div>Change Quantity To Continue</div>
+    <div><p>Change Quantity To Continue</p></div>
 <?php endif; ?>
