@@ -33,7 +33,8 @@ if (!$result) {
     flash($e[2]);
 }
 ?>
-<div>Checkout</div>
+<div><h2>Checkout</h2></div>
+
 <?php if (count($result) > 0): ?>
 <?php $total = 0; $boolCheckout=True;?>
 <?php foreach ($result as $r): ?>
@@ -81,6 +82,4 @@ if (!$result) {
     <input type="number" id="zip" name="zip" placeholder="10001" maxlength="5">
 
 </form>
-<?php else: ?>
-    <div><?php flash("Change Quantity To Continue"); ?></div>
 <?php endif; ?>
