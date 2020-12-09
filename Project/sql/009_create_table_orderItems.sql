@@ -9,5 +9,5 @@ CREATE TABLE IF NOT EXISTS OrderItems
     foreign key (product_id) references Products (id) ON DELETE CASCADE ,
     foreign key (order_id) references Orders (id) ON DELETE CASCADE ,
     foreign key (quantity) references Cart (quantity) ON DELETE CASCADE
---     foreign key (quantity) references Cart (user_id.product_id.quantity) ON DELETE CASCADE ,
+
 )
