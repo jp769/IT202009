@@ -42,17 +42,21 @@ if (!$result) {
         <form method="POST">
             <div class="card-body">
                 <div>
-                    <div>Name:<a href=<?php echo getURL("product_view.php");?>?id=<?php safer_echo($r['product_id']); ?>> <?php safer_echo($r["prod"]);?></a></div>
-                    <div><input type = "number" min="0" name="quantity" value="<?php safer_echo($r["quantity"]); ?>"/>
+                    <div>Product: <?php safer_echo($r["prod"]);?></div>
+                    <?php if($r['prodQuantity'] < $r['quantity']): ?>
+                    <?php $boolCheckout = False; ?>
+                    <div>Quantity<input type = "number" min="0" name="quantity" value="<?php safer_echo($r["quantity"]); ?>"/>
                         <input type="hidden" name="cartID" value="<?php echo $r["id"];?>"/>
                     </div>
-
+                    <?php else: ?>
+                        <div>Quantity: <?php safer_echo($r["quantity"]); ?></div>
+                    <?php endif; ?>
                     <div>Price: <?php safer_echo($r["price"]); ?></div>
                     <div>Subtotal: <?php echo ($r["subtotal"]); ?></div>
                     <?php $total += ($r['quantity'] * $r['price']); ?>
                 </div>
                 <?php if($r['prodQuantity'] < $r['quantity']): ?>
-                    <div>Current Stock is: <?php echo $r['prodQuantity'];?> Please change quantity</div>
+                    <div>Currently only have : <?php echo $r['prodQuantity'];?> Please change quantity</div>
                     <input type="submit" class="btn btn-success" name="update" value="Update">
                 <?php endif; ?>
             </div>
@@ -78,5 +82,5 @@ if (!$result) {
 
 </form>
 <?php else: ?>
-    <p2>Change Quantity</p2>
+    <div>Change Quantity To Continue</div>
 <?php endif; ?>
