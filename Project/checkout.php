@@ -70,6 +70,7 @@ if (!$result) {
         <div> Total: <?php safer_echo($total); ?> </div>
     </div>
 <?php if($boolCheckout): ?>
+<br><br>
 <div style="align-content: space-evenly">
     <form>
     <label for="adr"><i class="fa fa-address-card-o"></i> Address</label>
