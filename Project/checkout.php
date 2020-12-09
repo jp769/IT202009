@@ -82,5 +82,5 @@ if (!$result) {
 
 </form>
 <?php else: ?>
-    <?php flash("Change Quantity To Continue"); ?>
+    <div><?php flash("Change Quantity To Continue"); ?></div>
 <?php endif; ?>
