@@ -51,8 +51,8 @@ if (!$result) {
                     <div>Subtotal: <?php echo ($r["subtotal"]); ?></div>
                     <?php $total += ($r['quantity'] * $r['price']); ?>
                 </div>
-                <?php if($r['prodQuantity'] > $r['quantity']): ?>
-                    <div>Over Quantity: <?php echo $r['prodQuantity'];?></div>
+                <?php if($r['prodQuantity'] < $r['quantity']): ?>
+                    <div>Current Stock is: <?php echo $r['prodQuantity'];?> Please change quantity</div>
                     <input type="submit" class="btn btn-success" name="update" value="Update">
                 <?php endif; ?>
             </div>
