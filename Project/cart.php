@@ -89,7 +89,6 @@ if (!$result) {
     <div class="Total">
         <div> Total: <?php safer_echo($total); ?> </div>
     </div>
-
     <div>
         <a type="button" href=<?php echo getURL("checkout.php");?>?id=<?php safer_echo($r['user_id']); ?>>Continue to Checkout</a>
     </div>
