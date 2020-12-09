@@ -90,6 +90,9 @@ if (!$result) {
             <input type="submit" class="btn btn-danger" name="deleteAll" value="Delete Cart"/>
         </form>
     </div>
+    <div>
+        <a type="button" href=<?php echo getURL("checkout.php");?>?id=<?php safer_echo($r['user_id']); ?>>Edit</a>
+    </div>
 <?php else: ?>
     <p>Empty Cart</p>
 <?php endif; ?>
