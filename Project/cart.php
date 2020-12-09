@@ -52,6 +52,12 @@ if (!$result) {
 
 ?>
 <h3>Cart</h3>
+<div>
+    <form method="POST">
+        <input type="hidden" name="userID" value="<?php safer_echo($r["user_id"]); ?>"/>
+        <input type="submit" class="btn btn-danger" name="deleteAll" value="Delete Cart"/>
+    </form>
+</div>
 <?php if (count($result) > 0): ?>
 <?php $total = 0; ?>
     <?php foreach ($result as $r): ?>
@@ -85,13 +91,7 @@ if (!$result) {
     </div>
 
     <div>
-        <form method="POST">
-            <input type="hidden" name="userID" value="<?php safer_echo($r["user_id"]); ?>"/>
-            <input type="submit" class="btn btn-danger" name="deleteAll" value="Delete Cart"/>
-        </form>
-    </div>
-    <div>
-        <a type="button" href=<?php echo getURL("checkout.php");?>?id=<?php safer_echo($r['user_id']); ?>>Edit</a>
+        <a type="button" href=<?php echo getURL("checkout.php");?>?id=<?php safer_echo($r['user_id']); ?>>Continue to Checkout</a>
     </div>
 <?php else: ?>
     <p>Empty Cart</p>
