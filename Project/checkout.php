@@ -58,7 +58,7 @@ if (!$result) {
         }
     </script>
 
-<div><h2>Checkout</h2></div>
+<div><h3>Checkout</h3></div>
 
 <?php if (count($result) > 0): ?>
 <?php $total = 0; $boolCheckout=True;?>
@@ -96,7 +96,7 @@ if (!$result) {
     </div>
 <?php if($boolCheckout): ?>
 <br><br>
-<p>Enter Shipping Address</p>
+<h5>Enter Shipping Address</h5>
 <div style="align-content: space-evenly">
     <form id="address">
     <label for="adr"><i class="fa fa-address-card-o"></i> Address</label>
