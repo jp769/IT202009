@@ -22,15 +22,6 @@ if(isset($_POST["update"])){
     }
 }
 
-if(isset($_POST["checkout"])){
-    $total = $_POST(["total"]);
-    $stmt = $db->prepare("INSERT into Orders (user_id, total_price) Values(:user_id, :total_price)");
-    $r = $stmt->execute([":user_id"=>get_user_id(), ":total_price"=>$total]);
-    if($r){
-        flash("");
-        header("Location: confirm.php");
-    }
-}
 
 //fetching
 $result = [];
@@ -82,5 +73,6 @@ if (!$result) {
         <div> Total: <?php safer_echo($total); ?> <input type="hidden" name="total" value="<?php echo $total;?>"/></div>
     </div>
 <?php if($boolCheckout): ?>
-    <input type="submit" class="btn btn-success" name="checkout" value="Confirm Checkout">
+    <a type="button" href="<?php echo getURL("confirm.php");?>?id=<?php safer_echo($total); ?>">Continue Checkout</a>
+<!--    <input type="submit" class="btn btn-success" name="checkout" value="Confirm Checkout">-->
 <?php endif;?>

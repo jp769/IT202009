@@ -1,15 +1,4 @@
-<?php
-$isValid = false;
-if (isset($_POST["address"])) {
-if (isset($_POST["adr"]) and isset($_POST["city"]) and isset($_POST["state"]) and isset($_POST["zip"]) and isset($_POST["payMethod"])) {
-$isValid = true;
-$address = $_POST["adr"] . " " . $_POST["city"] . "," . $_POST["state"] . " " . $_POST["zip"];
-$payment = $_POST["payMethod"];
-} else {
-flash("Unable to add address, try again");
-}
-}
-?>
+
 
 <script>
 
@@ -57,4 +46,3 @@ flash("Unable to add address, try again");
     </form>
 </div>
 
-<button type="button" onclick="purchaseCart(<?php echo $r["user_id"];?>,<?php echo $total;?>, <?php safer_echo($address);?>, <?php safer_echo($payment);?>);" class="btn btn-primary btn-lg">Checkout</button>
