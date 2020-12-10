@@ -49,6 +49,23 @@ if (!$result) {
 ?>
 
     <script>
+        (function() {
+            $('form > input').keyup(function() {
+
+                var empty = false;
+                $('form > input').each(function() {
+                    if ($(this).val() == '') {
+                        empty = true;
+                    }
+                });
+
+                if (empty) {
+                    $('#address').attr('disabled', 'disabled'); // updated according to http://stackoverflow.com/questions/7637790/how-to-remove-disabled-attribute-with-jquery-ie
+                } else {
+                    $('#address').removeAttr('disabled'); // updated according to http://stackoverflow.com/questions/7637790/how-to-remove-disabled-attribute-with-jquery-ie
+                }
+            });
+        })()
         function purchaseCart(userID, total, address, payment){
 
             let xhttp = new XMLHttpRequest();
