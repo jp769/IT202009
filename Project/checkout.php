@@ -22,10 +22,8 @@ if(isset($_POST["update"])){
     }
 }
 if(isset($_POST["address"])){
-    $addr = $_POST['addr'] . " ". $_POST['city'] . ", ". $_POST['state'] ." ". $_POST['zip'];
+    $addr = $_POST['addr'] . $_POST['city'] . $_POST['state'] . $_POST['zip'];
     $payment_method = $_POST['payMethod'];
-    echo ("\n");
-    echo ("\n");
     echo($addr);
     echo($payment_method);
 //    $stmt = $db->prepare("INSERT into Order ");
@@ -89,7 +87,7 @@ if (!$result) {
     <br><br>
     <h5>Enter Shipping Address</h5>
     <div style="align-content: space-evenly">
-        <form id="address_form">
+        <form id="address">
             <label for="adr">Address</label>
             <input type="text" id="adr" name="addr" placeholder="123 Example Street" required>
             <label for="city">City</label>
