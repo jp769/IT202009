@@ -21,7 +21,16 @@ if(isset($_POST["update"])){
         flash("Updated quantity", "success");
     }
 }
-
+if(isset($_POST["address"])){
+    $address = $_POST['address'] . $_POST['city'] . $_POST['state'] . $_POST['zip'];
+    $payment_method = $_POST['payMethod'];
+    echo ($address, $payment_method);
+//    $stmt = $db->prepare("INSERT into Order ");
+//    $r = $stmt->execute([":id"=>$_POST["cartID"], ":q"=>$_POST["quantity"], "total_price"]);
+//    if($r){
+//        flash("Updated orders");
+//    }
+}
 
 //fetching
 $result = [];
@@ -73,6 +82,27 @@ if (!$result) {
         <div> Total: <?php safer_echo($total); ?> <input type="hidden" name="total" value="<?php echo $total;?>"/></div>
     </div>
 <?php if($boolCheckout): ?>
+
+    <br><br>
+    <h5>Enter Shipping Address</h5>
+    <div style="align-content: space-evenly">
+        <form id="address" method="post">
+            <label for="adr"><i class="fa fa-address-card-o"></i> Address</label>
+            <input type="text" id="adr" name="address" placeholder="123 Example Street" required>
+            <label for="city"><i class="fa fa-institution"></i> City</label>
+            <input type="text" id="city" name="city" placeholder="New York" required>
+
+            <label for="state">State</label>
+            <input type="text" id="state" name="state" placeholder="NY" maxlength="2" required>
+            <label for="zip">Zip</label>
+            <input type="number" id="zip" name="zip" placeholder="10001" maxlength="5" required>
+            <br>
+            <label for="payMethod">Payment Method</label>
+            <input type="text" id="payMethod" name="payMethod" placeholder="Cash" required>
+            <input type="submit" class="btn btn-success" name="address" value="Enter Address">
+        </form>
+    </div>
+
     <a type="button" href="<?php echo getURL("confirm.php");?>?id=<?php safer_echo($total); ?>">Continue Checkout</a>
 <!--    <input type="submit" class="btn btn-success" name="checkout" value="Confirm Checkout">-->
 <?php endif;?>
