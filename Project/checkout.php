@@ -24,7 +24,10 @@ if(isset($_POST["update"])){
 if(isset($_POST["address"])){
     $addr = $_POST['addr'] . " ". $_POST['city'] . ", ". $_POST['state'] ." ". $_POST['zip'];
     $payment_method = $_POST['payMethod'];
-    safer_echo($addr. $payment_method);
+    echo ("\n");
+    echo ("\n");
+    echo($addr);
+    echo($payment_method);
 //    $stmt = $db->prepare("INSERT into Order ");
 //    $r = $stmt->execute([":id"=>$_POST["cartID"], ":q"=>$_POST["quantity"], "total_price"]);
 //    if($r){
