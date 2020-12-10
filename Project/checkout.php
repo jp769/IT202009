@@ -131,7 +131,8 @@ if (!$result) {
     <input type="submit" class="btn btn-success" name="address" value="Enter Address">
 </div>
 
-    <?php if ($isValid);?>
-    <button type="button" onclick="purchaseCart(<?php echo $r["user_id"];?>,<?php echo $total;?>, <?php safer_echo($address);?>, <?php safer_echo($payment);?>);" class="btn btn-primary btn-lg">Checkout</button>
+<?php if ($isValid): ?>
+<button type="button" onclick="purchaseCart(<?php echo $r["user_id"];?>,<?php echo $total;?>, <?php safer_echo($address);?>, <?php safer_echo($payment);?>);" class="btn btn-primary btn-lg">Checkout</button>
 <!--    <input type="submit" class="btn btn-success" name="checkout" value="Checkout">-->
-    <?php endif;?>
+<?php endif;?>
+<?php endif;?>
