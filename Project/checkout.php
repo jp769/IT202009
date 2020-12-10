@@ -24,7 +24,7 @@ if(isset($_POST["update"])){
 if(isset($_POST["address"])){
     $address = $_POST['address'] . $_POST['city'] . $_POST['state'] . $_POST['zip'];
     $payment_method = $_POST['payMethod'];
-    echo ($address, $payment_method);
+    echo ($address. $payment_method);
 //    $stmt = $db->prepare("INSERT into Order ");
 //    $r = $stmt->execute([":id"=>$_POST["cartID"], ":q"=>$_POST["quantity"], "total_price"]);
 //    if($r){
