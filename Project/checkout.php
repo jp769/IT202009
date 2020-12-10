@@ -24,8 +24,9 @@ if(isset($_POST["update"])){
 if(isset($_POST["address"])){
     $addr = $_POST['addr'] . $_POST['city'] . $_POST['state'] . $_POST['zip'];
     $payment_method = $_POST['payMethod'];
-    echo($addr);
-    echo($payment_method);
+    $total_price = $_POST['total'];
+    echo $total_price;
+    echo($addr . $payment_method);
 //    $stmt = $db->prepare("INSERT into Order ");
 //    $r = $stmt->execute([":id"=>$_POST["cartID"], ":q"=>$_POST["quantity"], "total_price"]);
 //    if($r){
@@ -85,7 +86,7 @@ if (!$result) {
 <?php if($boolCheckout): ?>
 
     <br><br>
-    <h5>Enter Shipping Address</h5>
+    <h4>Enter Shipping Address</h4>
     <div style="align-content: space-evenly">
         <form id="address">
             <label for="adr">Address</label>
