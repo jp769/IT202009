@@ -112,7 +112,7 @@ if (!$result) {
 <br><br>
 <h5>Enter Shipping Address</h5>
 <div style="align-content: space-evenly">
-    <form id="address">
+    <form id="address" method="post">
     <label for="adr"><i class="fa fa-address-card-o"></i> Address</label>
     <input type="text" id="adr" name="address" placeholder="123 Example Street" required>
     <label for="city"><i class="fa fa-institution"></i> City</label>
@@ -125,14 +125,14 @@ if (!$result) {
     <br>
     <label for="payMethod">Payment Method</label>
     <input type="text" id="payMethod" name="payMethod" placeholder="Cash" required>
+    <input type="submit" class="btn btn-success" name="address" value="Enter Address" disabled="disabled">
     </form>
 </div>
 <div>
-    <input type="submit" class="btn btn-success" name="address" value="Enter Address">
-</div>
 
 <?php if ($isValid): ?>
 <button type="button" onclick="purchaseCart(<?php echo $r["user_id"];?>,<?php echo $total;?>, <?php safer_echo($address);?>, <?php safer_echo($payment);?>);" class="btn btn-primary btn-lg">Checkout</button>
 <!--    <input type="submit" class="btn btn-success" name="checkout" value="Checkout">-->
 <?php endif;?>
 <?php endif;?>
+</div>
