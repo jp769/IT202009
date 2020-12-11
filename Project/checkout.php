@@ -66,7 +66,7 @@ if (!$result) {
 ?>
 
 <?php if($continueB): ?>
-    <div><h2>Order Successful</h2></div>
+    <div><h2>Order Successful, Continue</h2></div>
 <?php else: ?>
 <div><h3>Checkout</h3></div>
 <?php endif;?>
