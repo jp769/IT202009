@@ -11,15 +11,25 @@ $db = getDB();
 //fetch OrderItems using userId
 $result =[];
 if(isset($db)) {
-    $id = get_user_id();
+    if(!has_role("Admin")) {
+        $id = get_user_id();
 
-    $stmt = $db->prepare("SELECT * FROM Orders WHERE user_id = :user_id LIMIT 10");
-    $r = $stmt->execute(["user_id"=>get_user_id()]);
+        $stmt = $db->prepare("SELECT * FROM Orders WHERE user_id = :user_id LIMIT 10");
+        $r = $stmt->execute(["user_id" => get_user_id()]);
 
-    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    if (!$result) {
-        $e = $stmt->errorInfo();
-        flash($e[2]);
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        if (!$result) {
+            $e = $stmt->errorInfo();
+            flash($e[2]);
+        }
+    }
+    else{
+        $stmt = $db->prepare("SELECT * FROM Orders LIMIT 10");
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        if (!$result) {
+            $e = $stmt->errorInfo();
+            flash($e[2]);
+        }
     }
 
     if (count($result) > 0) {
