@@ -34,10 +34,10 @@ if(isset($_POST["address"])){
     $e = $stmt->errorInfo();
     if($r){
         flash("Updated orders");
-        header("Location: confirm.php?id=$total_price");
+        $continueB = True;
+//        header("Location: confirm.php?id=$total_price");
     }
     else{
-        $continueB = True;
         flash("Unable to create order");
     }
     }
