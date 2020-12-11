@@ -26,9 +26,6 @@ if(isset($o_id)){
         flash($e[2]);
     }
 
-    $stmt = $db->prepare("DELETE FROM Cart Where user_id = :user_id");
-    $r = $stmt->execute([":user_id"=>get_user_id()]);
-
     if (count($result) > 0) {
         foreach ($result as $r) {
             $q = $r['quantity'];
@@ -36,6 +33,11 @@ if(isset($o_id)){
             $stmt = $db->prepare("UPDATE Products set quantity = quantity-:q where id = :product_id");
         }
     }
+    
+    $stmt = $db->prepare("DELETE FROM Cart Where user_id = :user_id");
+    $r = $stmt->execute([":user_id"=>get_user_id()]);
+
+
     }
 ?>
 
