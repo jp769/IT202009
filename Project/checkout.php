@@ -23,9 +23,9 @@ if(isset($_POST["update"])){
 }
 if(isset($_POST["address"])){
     if(isset($db)){
-    $addr = $_POST['addr'] . " " . $_POST['city'] . ", " . $_POST['state'] ." " . $_POST['zip'];
-    $payment_method = $_POST['payMethod'];
-    $total_price = $_POST['total'];
+    $addr = $_POST["addr"] . " " . $_POST["city"] . ", " . $_POST["state"] ." " . $_POST["zip"];
+    $payment_method = $_POST["payMethod"];
+    $total_price = $_POST["total"];
     $stmt = $db->prepare("INSERT INTO Orders(user_id, total_price, address, payment_method) VALUES( :user_id, :total_price, `:address`, `:payment_method`)");
     $r = $stmt->execute([":user_id"=>get_user_id(), ":total_price"=>$total_price, ":address"=>$addr, ":payment_method"=>$payment_method]);
     if($r){
@@ -84,7 +84,7 @@ if (!$result) {
 <?php endforeach; ?>
 <?php endif; ?>
     <div class="Total">
-        <div> Total: <?php safer_echo($total); ?> <input type="hidden" name="total" value="<?php echo $total;?>"/></div>
+        <div> Total: <?php safer_echo($total); ?></div>
     </div>
 <?php if($boolCheckout): ?>
 
@@ -104,7 +104,9 @@ if (!$result) {
             <br>
             <label for="payMethod">Payment Method</label>
             <input type="text" id="payMethod" name="payMethod" placeholder="Cash" required>
+            <input type="hidden" name="total" value="<?php echo $total;?>"/>
             <input type="submit" class="btn btn-success" name="address" value="Enter Address">
+
         </form>
     </div>
 
