@@ -44,7 +44,6 @@ if(isset($_POST["address"])){
 
         if($r2) {
             ?><a type="button" href="<?php echo getURL("confirm.php");?>?id=<?php safer_echo($o_id); ?>">Continue Checkout</a><?php
-//            header("Location: confirm.php?$o_id");
         }
     }
     else{
@@ -66,7 +65,11 @@ if (!$result) {
 }
 ?>
 
+<?php if($continueB): ?>
+    <div><h2>Order Successful</h2></div>
+<?php else: ?>
 <div><h3>Checkout</h3></div>
+<?php endif;?>
 
 <?php if (count($result) > 0): ?>
 <?php $total = 0; $boolCheckout=True;?>
@@ -126,9 +129,6 @@ if (!$result) {
         </form>
     </div>
 <?php endif;?>
-<?php if($continueB): ?>
-    <a type="button" href="<?php echo getURL("confirm.php");?>?id=<?php safer_echo($total); ?>">Continue Checkout</a>
-<!--    <input type="submit" class="btn btn-success" name="checkout" value="Confirm Checkout">-->
-<?php endif;?>
+
 
 <?php require(__DIR__ . "/partials/flash.php");
