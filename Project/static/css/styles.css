@@ -29,12 +29,6 @@ ul[class="nav"] {
     background-color: #08b1ff;
 }
 
-div.form {
-    display: block;
-    text-align: center;
-}
-
-
 input, select {
     width: 50%;
     padding: 12px 20px;
@@ -129,4 +123,11 @@ label[for="prod-label"] {
 
 .dropdown:hover .dropdown-content {
   display: block;
+}
+
+#adr, #city, #state, #zip, #payMethod {
+    display: block;
+    text-align: left;
+    margin-left: initial;
+    width:fit-content;
 }
