@@ -31,9 +31,10 @@ if(isset($o_id)){
             $q = $r['quantity'];
             $product_id = $r['product_id'];
             $stmt = $db->prepare("UPDATE Products set quantity = quantity-:q where id = :product_id");
+            $r = $stmt->execute([":qd"=>$q, ":product_id"=>$product_id]);
         }
     }
-    
+
     $stmt = $db->prepare("DELETE FROM Cart Where user_id = :user_id");
     $r = $stmt->execute([":user_id"=>get_user_id()]);
 
