@@ -13,7 +13,7 @@ $result =[];
 if(isset($db)) {
     $id = get_user_id();
 
-    $stmt = $db->prepare("SELECT * FROM ORERS WHERE user_id = :user_id LIMIT 10");
+    $stmt = $db->prepare("SELECT * FROM Orders WHERE user_id = :user_id LIMIT 10");
     $r = $stmt->execute(["user_id"=>get_user_id()]);
 
     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
