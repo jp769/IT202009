@@ -1,6 +1,7 @@
 <?php
 if(isset($_GET["total_price"])){
 $total_price = $_GET["total_price"];
+echo $total_price;
 }
 ?>
 <script>
