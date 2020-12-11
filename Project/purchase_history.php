@@ -30,25 +30,27 @@ if(isset($db)) {
             $r1 = $stmt1->execute(["order_id"=>$o_id]);
             $result1 = $stmt1->fetchAll(PDO::FETCH_ASSOC);
 
+            ?><p> -Products (Order: <?php echo $o_id;?>)</p>
+            <?php
             foreach ($result1 as $r2):?>
                 <div class="card">
                 <div class="card-title"></div>
                 <form method="POST">
                     <div class="card-body">
                         <div>
-                            <p> - Info - </p>
                             <div>Name: <?php safer_echo($r2["name"]);?> </div>
                             <div>Quantity: <?php safer_echo($r2["quantity"]); ?> </div>
                             <div>Unit Price: <?php safer_echo($r2["unit_price"]); ?></div>
-
+<br>
                         </div>
                     </div>
                 </form>
                 </div>
+            <?php endforeach;?>
                 <div class="Total">
-                <div> Total: <?php safer_echo($r["total_price"]); ?> </div>
+                    <div> Total: <?php safer_echo($r["total_price"]); ?> </div>
                 </div>
-            <?php endforeach;
+<?php
         }
 
     }
