@@ -36,7 +36,7 @@ if(isset($_POST["address"])){
         flash("Updated orders");
     }
     else{
-        echo($e[0]);
+        $continue = True;
         flash("Unable to create order");
     }
     }
@@ -114,7 +114,8 @@ if (!$result) {
 
         </form>
     </div>
-
+<?php endif;?>
+<?php if($continue): ?>
     <a type="button" href="<?php echo getURL("confirm.php");?>?id=<?php safer_echo($total); ?>">Continue Checkout</a>
 <!--    <input type="submit" class="btn btn-success" name="checkout" value="Confirm Checkout">-->
 <?php endif;?>
