@@ -30,7 +30,7 @@ $total_price = $_GET["total_price"];
 
 <div>
     <form>
-        <label for="test">Testing <?php echo ($total_price)?></label>
+        <label for="test">Testing</label>
         <input type="text" id="test" name="test" placeholder="Test">
     </form>
 </div>
