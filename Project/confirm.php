@@ -31,7 +31,7 @@ if(isset($o_id)){
             $q = $r['quantity'];
             $product_id = $r['product_id'];
             $stmt = $db->prepare("UPDATE Products set quantity = quantity-:q where id = :product_id");
-            $r = $stmt->execute([":qd"=>$q, ":product_id"=>$product_id]);
+            $r = $stmt->execute([":q"=>$q, ":product_id"=>$product_id]);
         }
     }
 
