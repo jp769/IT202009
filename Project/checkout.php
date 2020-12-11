@@ -25,7 +25,7 @@ if(isset($_POST["address"])){
     $addr = $_POST['addr'] . " " . $_POST['city'] . ", " . $_POST['state'] ." " . $_POST['zip'];
     $payment_method = $_POST['payMethod'];
     $total_price = $_POST['total'];
-    $stmt = $db->prepare("INSERT into Orders (user_id, total_price, address, payment_method) VALUES(:user_id, :total_price, :address, :payment_method)");
+    $stmt = $db->prepare("INSERT into Orders (user_id, total_price, address, payment_method) VALUES( :user_id, :total_price, `:address`, `:payment_method`)");
     $r = $stmt->execute([":user_id"=>get_user_id(), ":total_price"=>$total_price, ":address"=>$addr, ":payment_method"=>$payment_method]);
     if($r){
         flash("Updated orders");
