@@ -39,7 +39,7 @@ if(isset($_POST["address"])){
         $stmt = $db->prepare("SELECT * FROM Orders WHERE user_id = :user_id ORDER BY id DESC LIMIT 1");
         $r = $stmt->execute([":user_id"=>get_user_id()]);
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        $o_id = $result;
+        $o_id = $result["id"];
         echo $o_id;
 
 //        header("Location: confirm.php?id=$total_price");
