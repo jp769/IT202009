@@ -25,11 +25,11 @@ if(isset($id)){
         $e = $stmt->errorInfo();
         flash($e[2]);
     }
-
-    $stmt = $db->prepare("");
+    
 }
 ?>
 
+    <h3>Order:</h3>
 <?php if (count($result) > 0): ?>
     <?php $total = 0; ?>
     <?php foreach ($result as $r): ?>
