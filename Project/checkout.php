@@ -26,12 +26,17 @@ if(isset($_POST["address"])){
     $addr = $_POST["addr"] . " " . $_POST["city"] . ", " . $_POST["state"] ." " . $_POST["zip"];
     $payment_method = $_POST["payMethod"];
     $total_price = $_POST["total"];
+    echo($addr);
+    echo($payment_method);
+    echo($total_price);
     $stmt = $db->prepare("INSERT INTO Orders(user_id, total_price, address, payment_method) VALUES( :user_id, :total_price, `:address`, `:payment_method`)");
     $r = $stmt->execute([":user_id"=>get_user_id(), ":total_price"=>$total_price, ":address"=>$addr, ":payment_method"=>$payment_method]);
+    $e = $stmt->errorInfo();
     if($r){
         flash("Updated orders");
     }
     else{
+        echo($e[0]);
         flash("Unable to create order");
     }
     }
