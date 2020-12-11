@@ -92,7 +92,7 @@ if (!$result) {
     <div class="Total">
         <div> Total: <?php safer_echo($total); ?></div>
     </div>
-<?php if($boolCheckout): ?>
+<?php if($boolCheckout and !($continueB)): ?>
 
     <br><br>
     <h4>Enter Shipping Address</h4>
