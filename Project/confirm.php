@@ -26,6 +26,9 @@ if(isset($o_id)){
         flash($e[2]);
     }
 
+    $stmt = $db->prepare("DELETE FROM Cart Where user_id = :user_id");
+    $r = $stmt->execute([":user_id"=>get_user_id()]);
+
 }
 ?>
 
@@ -40,7 +43,7 @@ if(isset($o_id)){
                     <div>
                         <p> - Info - </p>
                         <div>Name: <?php safer_echo($r["prod"]);?> </div>
-                        <div><?php safer_echo($r["quantity"]); ?> </div>
+                        <div>Quantity: <?php safer_echo($r["quantity"]); ?> </div>
                         <div>Unit Price: <?php safer_echo($r["unit_price"]); ?></div>
 
                         <?php $total += ($r['quantity'] * $r['unit_price']); ?>
