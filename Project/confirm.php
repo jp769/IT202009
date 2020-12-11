@@ -8,25 +8,25 @@ if (!is_logged_in()) {
 ?>
 
 <?php
+$result = [];
+
 if(isset($_GET["id"])){
     $o_id = $_GET["id"];
     $u = get_user_id();
-    safer_echo($o_id);
-    
 }
-
-$result = [];
 
 if(isset($id)){
     $o_id = $_GET["id"];
     $db = getDB();
     $stmt = $db->prepare("SELECT * FROM OrderItems where order_id = :order_id");
-    $r = $stmt->execute([":0_id"=>$o_id]);
+    $r = $stmt->execute([":order_id"=>$o_id]);
     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
     if (!$result) {
         $e = $stmt->errorInfo();
         flash($e[2]);
     }
+
+    $stmt = $db->prepare("");
 }
 ?>
 
