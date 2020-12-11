@@ -35,14 +35,17 @@ if(isset($_POST["address"])){
         $continueB = True;
 
         $stmt = $db->prepare("SELECT * FROM Orders WHERE user_id = :user_id ORDER BY id DESC LIMIT 1");
-        $r = $stmt->execute([":user_id"=>get_user_id()]);
+        $r1 = $stmt->execute([":user_id"=>get_user_id()]);
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         $o_id = $result["id"];
 
         $stmt = $db->prepare("INSERT INTO OrderItems (order_id, product_id, quantity, unit_price) SELECT :o_id, product_id, quantity, price FROM Cart WHERE user_id = :user_id");
-        $r = $stmt->execute([":o_id"=>$o_id, ":user_id"=>get_user_id()]);
+        $r2 = $stmt->execute([":o_id"=>$o_id, ":user_id"=>get_user_id()]);
 
-        header("Location: confirm.php?$o_id");
+        if($r2) {
+            ?><a type="button" href="<?php echo getURL("confirm.php");?>?id=<?php safer_echo($o_id); ?>">Continue Checkout</a><?php
+//            header("Location: confirm.php?$o_id");
+        }
     }
     else{
         flash("Unable to create order");
