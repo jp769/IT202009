@@ -1,5 +1,8 @@
-
-
+<?php
+if(isset($_GET["total_price"])){
+$total_price = $_GET["total_price"];
+}
+?>
 <script>
 
     function purchaseCart(userID, total, address, payment){
@@ -25,24 +28,9 @@
     }
 </script>
 
-
-<br><br>
-<h5>Enter Shipping Address</h5>
-<div style="align-content: space-evenly">
-    <form id="address" method="post">
-        <label for="adr"><i class="fa fa-address-card-o"></i> Address</label>
-        <input type="text" id="adr" name="address" placeholder="123 Example Street" required>
-        <label for="city"><i class="fa fa-institution"></i> City</label>
-        <input type="text" id="city" name="city" placeholder="New York" required>
-
-        <label for="state">State</label>
-        <input type="text" id="state" name="state" placeholder="NY" maxlength="2" required>
-        <label for="zip">Zip</label>
-        <input type="number" id="zip" name="zip" placeholder="10001" maxlength="5" required>
-        <br>
-        <label for="payMethod">Payment Method</label>
-        <input type="text" id="payMethod" name="payMethod" placeholder="Cash" required>
-        <input type="submit" class="btn btn-success" name="address" value="Enter Address">
+<div>
+    <form>
+        <label for="test">Testing <?php echo ($total_price)?></label>
+        <input type="text" id="test" name="test" placeholder="Test">
     </form>
 </div>
-
