@@ -11,7 +11,7 @@ if (!is_logged_in()) {
 if(isset($_GET["user_id"])){
 $id = $_GET["user_id"];
 }
-
+$continueB = False;
 $db = getDB();
 
 if(isset($_POST["update"])){
@@ -36,7 +36,7 @@ if(isset($_POST["address"])){
         flash("Updated orders");
     }
     else{
-        $continue = True;
+        $continueB = True;
         flash("Unable to create order");
     }
     }
@@ -115,7 +115,7 @@ if (!$result) {
         </form>
     </div>
 <?php endif;?>
-<?php if($continue): ?>
+<?php if($continueB): ?>
     <a type="button" href="<?php echo getURL("confirm.php");?>?id=<?php safer_echo($total); ?>">Continue Checkout</a>
 <!--    <input type="submit" class="btn btn-success" name="checkout" value="Confirm Checkout">-->
 <?php endif;?>
