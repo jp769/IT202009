@@ -26,9 +26,7 @@ if(isset($_POST["address"])){
     $addr = $_POST["addr"] . " " . $_POST["city"] . ", " . $_POST["state"] ." " . $_POST["zip"];
     $payment_method = $_POST["payMethod"];
     $total_price = $_POST["total"];
-    echo($addr);
-    echo($payment_method);
-    echo($total_price);
+
     $stmt = $db->prepare("INSERT INTO Orders(user_id, total_price, address, payment_method) VALUES( :user_id, :total_price, :address, :payment_method)");
     $r = $stmt->execute([":user_id"=>get_user_id(), ":total_price"=>$total_price, ":address"=>$addr, ":payment_method"=>$payment_method]);
     $e = $stmt->errorInfo();
@@ -40,9 +38,11 @@ if(isset($_POST["address"])){
         $r = $stmt->execute([":user_id"=>get_user_id()]);
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         $o_id = $result["id"];
-        echo $o_id;
 
-//        header("Location: confirm.php?id=$total_price");
+        $stmt = $db->prepare("DELETE FROM Cart Where user_id = :user_id IN (INSERT INTO OrderItems (order_id, product_id, quantity, unit_price) SELECT :o_id, product_id, quantity, price FROM Cart WHERE user_id = :user_id)");
+        $r = $stmt->execute([":o_id"=>$o_id, ":user_id"=>get_user_id()]);
+
+        header("Location: confirm.php?$o_id");
     }
     else{
         flash("Unable to create order");

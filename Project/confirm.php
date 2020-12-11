@@ -1,37 +1,16 @@
 <?php
-if(isset($_GET["total_price"])){
-$total_price = $_GET["total_price"];
-echo $total_price;
+if(isset($_GET["o_id"])){
+$o_id = $_GET["o_id"];
+$u = get_user_id();
+echo $o_id;
+echo $u;
 }
 ?>
-<script>
-
-    function purchaseCart(userID, total, address, payment){
-
-        let xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function () {
-            if (this.readyState == 4 && this.status == 200) {
-                let json = JSON.parse(this.responseText);
-                if (json) {
-                    if (json.status == 200) {
-                        alert(json.message);
-                    } else {
-                        alert(json.error);
-                    }
-                }
-            }
-        };
-        xhttp.open("POST", "<?php echo getURL("api/purchase_cart.php");?>", true);
-        //this is required for post ajax calls to submit it as a form
-        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        //map any key/value data similar to query params
-        xhttp.send("userID="+userID +"&"+ "total="+total + "&"+ "address="+address + "&" + "payment="+payment);
-    }
-</script>
 
 <div>
     <form>
         <label for="test">Testing</label>
-        <input type="text" id="test" name="test" placeholder="Test">
+        <p><?php echo $o_id;?></p>
+        <p><?php echo $u;?></p>
     </form>
 </div>
