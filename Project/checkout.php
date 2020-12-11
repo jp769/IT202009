@@ -22,16 +22,14 @@ if(isset($_POST["update"])){
     }
 }
 if(isset($_POST["address"])){
-    $addr = $_POST['addr'] . $_POST['city'] . $_POST['state'] . $_POST['zip'];
+    $addr = $_POST['addr'] . " " . $_POST['city'] . ", " . $_POST['state'] ." " . $_POST['zip'];
     $payment_method = $_POST['payMethod'];
     $total_price = $_POST['total'];
-    echo $total_price;
-    echo($addr . $payment_method);
-//    $stmt = $db->prepare("INSERT into Order ");
-//    $r = $stmt->execute([":id"=>$_POST["cartID"], ":q"=>$_POST["quantity"], "total_price"]);
-//    if($r){
-//        flash("Updated orders");
-//    }
+    $stmt = $db->prepare("INSERT into Order (user_id, total_price, address, payment_method) VALUES(:user_id, :total_price, :address, :payment_method)");
+    $r = $stmt->execute([":user_id"=>$id, ":total_price"=>$total_price, ":address"=>$addr, ":payment_method"=>$payment_method]);
+    if($r){
+        flash("Updated orders");
+    }
 }
 
 //fetching
