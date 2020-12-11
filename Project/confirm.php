@@ -15,7 +15,7 @@ if(isset($_GET["id"])){
     $u = get_user_id();
 }
 
-if(isset($id)){
+if(isset($o_id)){
     $o_id = $_GET["id"];
     $db = getDB();
     $stmt = $db->prepare("SELECT o.product_id, o.quantity, o.unit_price, Product.name as prod FROM OrderItems as o LEFT JOIN Products Product on Product.id = o.product_id where order_id = :order_id");
@@ -25,7 +25,7 @@ if(isset($id)){
         $e = $stmt->errorInfo();
         flash($e[2]);
     }
-    
+
 }
 ?>
 
