@@ -22,13 +22,18 @@ if(isset($_POST["update"])){
     }
 }
 if(isset($_POST["address"])){
+    if(isset($db)){
     $addr = $_POST['addr'] . " " . $_POST['city'] . ", " . $_POST['state'] ." " . $_POST['zip'];
     $payment_method = $_POST['payMethod'];
     $total_price = $_POST['total'];
-    $stmt = $db->prepare("INSERT into Orders (user_id, total_price, address, payment_method) VALUES( :user_id, :total_price, `:address`, `:payment_method`)");
+    $stmt = $db->prepare("INSERT INTO Orders(user_id, total_price, address, payment_method) VALUES( :user_id, :total_price, `:address`, `:payment_method`)");
     $r = $stmt->execute([":user_id"=>get_user_id(), ":total_price"=>$total_price, ":address"=>$addr, ":payment_method"=>$payment_method]);
     if($r){
         flash("Updated orders");
+    }
+    else{
+        flash("Unable to create order");
+    }
     }
 }
 
@@ -86,7 +91,7 @@ if (!$result) {
     <br><br>
     <h4>Enter Shipping Address</h4>
     <div style="align-content: space-evenly">
-        <form id="address">
+        <form method="POST" id="address">
             <label for="adr">Address</label>
             <input type="text" id="adr" name="addr" placeholder="123 Example Street" required>
             <label for="city">City</label>
@@ -106,3 +111,5 @@ if (!$result) {
     <a type="button" href="<?php echo getURL("confirm.php");?>?id=<?php safer_echo($total); ?>">Continue Checkout</a>
 <!--    <input type="submit" class="btn btn-success" name="checkout" value="Confirm Checkout">-->
 <?php endif;?>
+
+<?php require(__DIR__ . "/partials/flash.php");
