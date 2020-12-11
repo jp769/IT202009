@@ -39,7 +39,7 @@ if(isset($_POST["address"])){
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         $o_id = $result["id"];
 
-        $stmt = $db->prepare("DELETE FROM Cart Where user_id = :user_id IN (INSERT INTO OrderItems (order_id, product_id, quantity, unit_price) SELECT :o_id, product_id, quantity, price FROM Cart WHERE user_id = :user_id)");
+        $stmt = $db->prepare("INSERT INTO OrderItems (order_id, product_id, quantity, unit_price) SELECT :o_id, product_id, quantity, price FROM Cart WHERE user_id = :user_id");
         $r = $stmt->execute([":o_id"=>$o_id, ":user_id"=>get_user_id()]);
 
         header("Location: confirm.php?$o_id");
