@@ -33,8 +33,15 @@ if(isset($_POST["address"])){
     $r = $stmt->execute([":user_id"=>get_user_id(), ":total_price"=>$total_price, ":address"=>$addr, ":payment_method"=>$payment_method]);
     $e = $stmt->errorInfo();
     if($r){
-        flash("Updated orders");
+//        flash("Updated orders");
         $continueB = True;
+
+        $stmt = $db->prepare("SELECT id FROM Orders ORDER BY ID DESC LIMIT 1");
+        $r = $stmt->execute();
+
+        $o_id = $r['id'];
+        echo $o_id;
+
 //        header("Location: confirm.php?id=$total_price");
     }
     else{
