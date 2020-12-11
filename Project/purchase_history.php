@@ -25,7 +25,7 @@ if(isset($db)) {
     if (count($result) > 0) {
 
         foreach ($result as $r) {
-            $o_id = $r['order_id'];
+            $o_id = $r['id'];
             $stmt1 = $db->prepare("SELECT * FROM OrderItems LEFT JOIN Products Product on Product.id = OrderItems.product_id WHERE order_id = :order_id");
             $r1 = $stmt1->execute(["order_id"=>$o_id]);
             $result1 = $stmt1->fetchAll(PDO::FETCH_ASSOC);
