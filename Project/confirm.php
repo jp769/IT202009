@@ -68,5 +68,6 @@ if(isset($o_id)){
 
 <?php endif; ?>
 
+    a type="button" href="<?php echo getURL("purchase_history.php");?>">Purchase History</a>
 
 <?php require(__DIR__ . "/partials/flash.php");
