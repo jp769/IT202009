@@ -16,24 +16,19 @@ if(isset($db)) {
 
         $stmt = $db->prepare("SELECT * FROM Orders WHERE user_id = :user_id LIMIT 10");
         $r = $stmt->execute(["user_id" => get_user_id()]);
-
-        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        if (!$result) {
-            $e = $stmt->errorInfo();
-            flash($e[2]);
-        }
     }
     else{
         $stmt = $db->prepare("SELECT * FROM Orders LIMIT 10");
+        $r = $stmt->execute();
+    }
+
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         if (!$result) {
             $e = $stmt->errorInfo();
             flash($e[2]);
         }
-    }
 
     if (count($result) > 0) {
-
         foreach ($result as $r) {
             $o_id = $r['id'];
             $stmt1 = $db->prepare("SELECT * FROM OrderItems LEFT JOIN Products Product on Product.id = OrderItems.product_id WHERE order_id = :order_id");
