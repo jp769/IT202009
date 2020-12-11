@@ -36,10 +36,10 @@ if(isset($_POST["address"])){
 //        flash("Updated orders");
         $continueB = True;
 
-        $stmt = $db->prepare("SELECT id FROM Orders ORDER BY ID DESC LIMIT 1");
-        $r = $stmt->execute();
-
-        $o_id = $r['id'];
+        $stmt = $db->prepare("SELECT id FROM Orders WHERE user_id = :user_id ORDER BY ID DESC LIMIT 1");
+        $r = $stmt->execute([":user_id"=>get_user_id()]);
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $o_id = $result['id'];
         echo $o_id;
 
 //        header("Location: confirm.php?id=$total_price");
