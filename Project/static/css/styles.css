@@ -71,10 +71,11 @@ input[type=password] {
     width: 25%;
 }
 
-label[for="prod-label"] {
+label[for="prod-label"], label[for="email"], label[for="p1"], label[for="username"], label[for="current"], label[for="pw"], label[for="cpw"]{
     margin-left: 37.5%;
     margin-right: 37.5%;
-    width: 25%;
+    display: block;
+    text-align:center;
 }
 
 .dropdown {
@@ -130,4 +131,9 @@ label[for="prod-label"] {
     text-align: left;
     margin-left: initial;
     width:fit-content;
+}
+
+#saved {
+    display: block;
+    margin: 0 auto;
 }
