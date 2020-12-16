@@ -9,7 +9,7 @@ if (!has_role("Admin")) {
     <div class="form">
         <form method="POST">
             <label for="prod-label">Name</label>
-            <input name="name" maxlength="60" placeholder="Name"/>
+            <input type="text" name="name" maxlength="60" placeholder="Name"/>
 
             <label for="prod-label">Quantity</label>
             <input type="number" min="0" name="quantity"/>
@@ -26,7 +26,7 @@ if (!has_role("Admin")) {
             <label for="prod-label">Visibility</label>
             <input type="text" name="visibility" maxlength="5" placeholder="(true/false)"/>
 
-            <input type="submit" name="save" value="Create"/>
+            <input type="submit" name="save" id="saved" value="Create"/>
         </form>
     </div>
 
