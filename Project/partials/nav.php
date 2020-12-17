@@ -31,13 +31,15 @@ require_once(__DIR__ . "/../lib/helpers.php");
         <?php endif; ?>
         <?php if (has_role("Admin")): ?>
             <li style="float:right"><a href=<?php echo getURL("create_product.php");?>>Create Product</a></li>
-            <div class="dropdown">
-                <button style="float:right" class="dropbtn">/Test Files<i class="fa fa-caret-down"></i></button>
-                <div class="dropdown-content">
-                    <a class="active" href=<?php echo getURL("Test/test_create_product.php");?>>Create Product</a>
-                    <a class="active" href=<?php echo getURL("Test/test_list_product.php");?>>List Product</a>
-                    <a class="active" href=<?php echo getURL("Test/test_create_cart.php");?>>Create Cart</a>
-                    <a class="active" href=<?php echo getURL("Test/test_list_cart.php");?>>List Cart</a>
+            <div class="dropdown show">
+                <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Test Files
+                </a>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <a class="dropdown-item" href=<?php echo getURL("Test/test_create_product.php");?>>Create Product</a>
+                    <a class="dropdown-item" href=<?php echo getURL("Test/test_list_product.php");?>>List Product</a>
+                    <a class="dropdown-item" href=<?php echo getURL("Test/test_create_cart.php");?>>Create Cart</a>
+                    <a class="dropdown-item" href=<?php echo getURL("Test/test_list_cart.php");?>>List Cart</a>
                 </div>
             </div>
 

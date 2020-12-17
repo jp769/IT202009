@@ -48,36 +48,23 @@ input[type=submit] {
     margin: 8px 0;
     border: 1px solid #eee;
     border-radius: 15px;
-    box-shadow: 5px 5px 5px #ee;
+    box-shadow: 5px 5px 5px #eee;
     text-shadow: none;
     cursor: pointer;
 }
 
-input[type=email] {
+input[type=email], input[type=text], input[type=password], input[type=number] {
     margin-left: 37.5%;
     margin-right: 37.5%;
     width: 25%;
 }
 
-input[type=text] {
-    margin-left: 37.5%;
-    margin-right: 37.5%;
-    width: 25%;
-}
-
-input[type=password] {
-    margin-left: 37.5%;
-    margin-right: 37.5%;
-    width: 25%;
-}
-
-
-input[type=checkbox]{
+input[type=checkbox], input[name="query"]{
     display: block;
     margin: 0.5% auto 2%;
 }
 
-label[for="visibility"], label[for="prod-label"], label[for="email"], label[for="p1"], label[for="username"], label[for="current"], label[for="pw"], label[for="cpw"]{
+label[for="visibility"], label[for="prod-label"], label[for="p_Sort"], label[for="email"], label[for="p1"], label[for="username"], label[for="current"], label[for="pw"], label[for="cpw"]{
     margin-left: 37.5%;
     margin-right: 37.5%;
     display: block;
@@ -120,7 +107,6 @@ label[for="visibility"], label[for="prod-label"], label[for="email"], label[for=
     display: block;
     padding: 12px 16px;
     text-decoration: none;
-    display: block;
     text-align: left;
 }
 
@@ -139,19 +125,7 @@ label[for="visibility"], label[for="prod-label"], label[for="email"], label[for=
     width:fit-content;
 }
 
-#saved{
-    display: block;
-    margin: 0 auto;
-}
-
-#adr, #city, #state, #zip, #payMethod {
-    display: block;
-    text-align: left;
-    margin-left: initial;
-    width:fit-content;
-}
-
-#saved {
+#saved, input[name="search"]{
     display: block;
     margin: 0 auto;
 }
