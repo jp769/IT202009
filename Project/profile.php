@@ -132,7 +132,7 @@ if (isset($_POST["saved"])) {
         <input type="text" name="username" value="<?php safer_echo(get_username()); ?>" maxlength="60"/>
 
         <label for="visibility">Account Visible</label>
-        <input type="checkbox" name="visibilty" checked="<?php safer_echo(get_visibility()); ?>">
+        <input type="checkbox" name="visibility" checked="<?php safer_echo(get_visibility()); ?>">
 
         <!-- DO NOT PRELOAD PASSWORD-->
         <label for="current">Current Password</label>
