@@ -64,22 +64,13 @@ if (isset($_POST["saved"])) {
         }
     }
     if ($isValid) {
-        if(isset($_POST["visibility"])){
-            if(is_numeric($_POST["visibility"]) && (intval($_POST["visibility"]) != -1)){
-                $vis = intval($_POST["visibility"]);
-                echo "success\n";
-                echo $vis;
-            }
 
-        }
-        if(isset($vis)){
-            echo "\nlonger query\n";
-            echo $newEmail . $newUsername. get_user_id();
-            $stmt = $db->prepare("UPDATE Users set visibility= :v where id= :id");
-            $r = $stmt->execute([":v"=>$vis, ":id" => get_user_id()]);
+        if(intval($_POST["visibility"]) == 0){
+            $stmt = $db->prepare("UPDATE Users set email= :email, username= :username, visibility=0 where id= :id");
+            $r = $stmt->execute([":email" => $newEmail, ":username" => $newUsername, ":id" => get_user_id()]);
         }
         else{
-            $stmt = $db->prepare("UPDATE Users set email= :email, username= :username, visibility=0 where id= :id");
+            $stmt = $db->prepare("UPDATE Users set email= :email, username= :username, visibility=1 where id= :id");
             $r = $stmt->execute([":email" => $newEmail, ":username" => $newUsername, ":id" => get_user_id()]);
         }
 
@@ -143,7 +134,7 @@ if (isset($_POST["saved"])) {
 
         <label for="visibility">Account Visible</label>
         <select name="visibility">
-            <option value="-1">Default</option>
+            <option value="<?php safer_echo(get_visibility());?>>"><?php if(get_visibility() == 1):;?>Public<?php else:?>Private<?php endif;?></option>
             <option value="0">Private</option>
             <option value="1">Public</option>
         </select>
