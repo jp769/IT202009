@@ -71,7 +71,7 @@ label[for="visibility"], label[for="prod-label"], label[for="p_Sort"], label[for
     text-align:center;
 }
 
-#adr, #city, #state, #zip, #payMethod, input[name="quantity"] {
+#adr, #city, #state, #zip, #payMethod, #quantity {
     display: block;
     text-align: left;
     margin-left: initial;

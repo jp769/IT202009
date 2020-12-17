@@ -5,7 +5,6 @@ require_once(__DIR__ . "/../lib/helpers.php");
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
       integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-
 <link rel="stylesheet" href=<?php echo getURL("static/css/styles.css");?>>
 
 
@@ -15,8 +14,9 @@ require_once(__DIR__ . "/../lib/helpers.php");
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
         crossorigin="anonymous"></script>
-<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #087ead;">
-    <ul class="navbar-nav mr-auto>
+
+<ul class="navbar sticky-top navbar-expand-md navbar-light" style="background-color: #087ead;">
+    <ul class="navbar-nav mr-auto">
         <li class="nav-item active"><a class="nav-link" href=<?php echo getURL("home.php");?>>Home</a></li>
         <?php if (!is_logged_in()): ?>
             <li class="nav-item"><a class="nav-link" href=<?php echo getURL("login.php");?>>Login</a></li>
@@ -27,10 +27,15 @@ require_once(__DIR__ . "/../lib/helpers.php");
             <li class="nav-item"><a class="nav-link" href=<?php echo getURL("profile.php");?>>Profile</a></li>
             <li class="nav-item"><a class="nav-link" href=<?php echo getURL("cart.php");?>>Cart</a></li>
             <li class="nav-item"><a class="nav-link" href=<?php echo getURL("purchase_history.php");?>>Purchase History</a></li>
-            <li class="nav-item" style="float:right"><a class="nav-link" class="active" href=<?php echo getURL("logout.php");?>>Logout</a></li>
         <?php endif; ?>
+    </ul>
+    <ul class="navbar-nav ml-auto">
+        <?php if (is_logged_in()): ?>
+        <li class="nav-item" ><a class="nav-link" class="active" href=<?php echo getURL("logout.php");?>>Logout</a></li>
+        <?php endif; ?>
+
         <?php if (has_role("Admin")): ?>
-            <li class="nav-item" style="float:right"><a class="nav-link" href=<?php echo getURL("create_product.php");?>>Create Product</a></li>
+            <li class="nav-item"><a class="nav-link" href=<?php echo getURL("create_product.php");?>>Create Product</a></li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Test Files
@@ -42,7 +47,7 @@ require_once(__DIR__ . "/../lib/helpers.php");
                     <a class="dropdown-item" href=<?php echo getURL("Test/test_list_cart.php");?>>List Cart</a>
                 </div>
             </li>
-        <?php endif; ?>
-
     </ul>
+    <?php endif; ?>
+</ul>
 </nav>

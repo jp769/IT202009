@@ -68,7 +68,7 @@ if (!$result) {
             <div>
                 <p> - Info - </p>
                 <div>Name:<a href=<?php echo getURL("product_view.php");?>?id=<?php safer_echo($r['product_id']); ?>> <?php safer_echo($r["prod"]);?></a></div>
-                <div><input type = "number" min="0" name="quantity" value="<?php safer_echo($r["quantity"]); ?>"/>
+                <div><input type = "number" min="0" name="quantity" id="quantity" value="<?php safer_echo($r["quantity"]); ?>"/>
                     <input type="hidden" name="cartID" value="<?php echo $r["id"];?>"/>
                 </div>
                 <div>Price: <?php safer_echo($r["price"]); ?></div>
