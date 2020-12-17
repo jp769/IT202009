@@ -11,9 +11,16 @@ $db = getDB();
 //pagination
 $per_page = 10;
 
+if(!has_role("Admin")){
 $query = "SELECT count(*) as total from Orders o where o.user_id = :id";
 $params = [":id"=>get_user_id()];
 paginate($query, $params, $per_page);
+}
+else{
+    $query = "SELECT count(*) as total from Orders";
+    $params = [":id"=>get_user_id()];
+    paginate($query, $params, $per_page);
+}
 
 //fetch OrderItems using userId
 $result =[];
