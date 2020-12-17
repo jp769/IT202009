@@ -70,6 +70,8 @@ if (isset($_POST["saved"])) {
         if ($r) {
             $stmt = $db->prepare("UPDATE USERS set visibility= :v where id= :id");
             echo intval($_POST["visibility"]);
+            echo "\n";
+            echo is_numeric($_POST["visibility"]);
             $r = $stmt->execute([":v"=>intval($_POST["visibility"]), ":id"=>get_user_id()]);
             flash("Updated profile");
         }
