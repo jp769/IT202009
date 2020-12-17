@@ -31,7 +31,7 @@ require_once(__DIR__ . "/../lib/helpers.php");
     </ul>
     <ul class="navbar-nav ml-auto">
         <?php if (is_logged_in()): ?>
-        <li class="nav-item" ><a class="nav-link" class="active" href=<?php echo getURL("logout.php");?>>Logout</a></li>
+        <li class="nav-item active" ><a class="nav-link" href=<?php echo getURL("logout.php");?>>Logout</a></li>
         <?php endif; ?>
 
         <?php if (has_role("Admin")): ?>
