@@ -70,10 +70,7 @@ if (isset($_POST["saved"])) {
                 echo "success\n";
                 echo $vis;
             }
-            else{
-                $vis = 1;
-                echo "not int";
-            }
+            
         }
         if(isset($vis)){
             echo "\nlonger query\n";
