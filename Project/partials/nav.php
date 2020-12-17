@@ -15,8 +15,8 @@ require_once(__DIR__ . "/../lib/helpers.php");
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
         crossorigin="anonymous"></script>
-<nav>
-    <ul class="nav">
+<nav class="navbar navbar-light" style="background-color: #087ead;">
+    <ul class="navbar-nav mr-auto">
         <li><a href=<?php echo getURL("home.php");?>>Home</a></li>
         <?php if (!is_logged_in()): ?>
             <li><a href=<?php echo getURL("login.php");?>>Login</a></li>
