@@ -71,16 +71,13 @@ input[type=password] {
     width: 25%;
 }
 
-<<<<<<< HEAD
-label[for="prod-label"], label[for="email"], label[for="p1"], label[for="username"], label[for="current"], label[for="pw"], label[for="cpw"]{
-=======
+
 input[type=checkbox]{
     display: block;
     margin: 0.5% auto 2%;
 }
 
 label[for="visibility"], label[for="prod-label"], label[for="email"], label[for="p1"], label[for="username"], label[for="current"], label[for="pw"], label[for="cpw"]{
->>>>>>> faa4e860cef90e89dd94bd7a95e1ac086d393ae9
     margin-left: 37.5%;
     margin-right: 37.5%;
     display: block;
