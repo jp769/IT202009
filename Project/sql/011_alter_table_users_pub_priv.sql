@@ -1,2 +1,2 @@
 ALTER TABLE Users
-    ADD COLUMN visibility default '';
+    ADD COLUMN visibility BIT default 'TRUE';
