@@ -8,17 +8,29 @@ if (!is_logged_in()) {
 
 $db = getDB();
 
+//pagination
+$per_page = 10;
+
+$query = "SELECT count(*) as total from Orders o where o.user_id = :id";
+$params = [":id"=>get_user_id()];
+paginate($query, $params, $per_page);
+
 //fetch OrderItems using userId
 $result =[];
 if(isset($db)) {
     if(!has_role("Admin")) {
         $id = get_user_id();
 
-        $stmt = $db->prepare("SELECT * FROM Orders WHERE user_id = :user_id LIMIT 10");
+        $stmt = $db->prepare("SELECT * FROM Orders WHERE user_id = :user_id LIMIT :offset, :count");
+        $stmt->bindValue(":offset", $offset, PDO::PARAM_INT);
+        $stmt->bindValue(":count", $per_page, PDO::PARAM_INT);
+        $stmt->bindValue(":id", get_user_id());
         $r = $stmt->execute(["user_id" => get_user_id()]);
     }
     else{
-        $stmt = $db->prepare("SELECT * FROM Orders LIMIT 10");
+        $stmt = $db->prepare("SELECT * FROM Orders LIMIT :offset, :count");
+        $stmt->bindValue(":offset", $offset, PDO::PARAM_INT);
+        $stmt->bindValue(":count", $per_page, PDO::PARAM_INT);
         $r = $stmt->execute();
     }
 
@@ -59,6 +71,10 @@ if(isset($db)) {
         }
 
     }
-}
+}?>
 
-require(__DIR__ . "/partials/flash.php");
+</div>
+<?php include(__DIR__."/partials/pagination.php");?>
+</div>
+
+<?php require(__DIR__ . "/partials/flash.php");
