@@ -67,7 +67,8 @@ if (isset($_POST["saved"])) {
         if(isset($_POST["visibility"])){
             if(is_numeric($_POST["visibility"])){
                 $vis = intval($_POST["visibility"]);
-                echo "success";
+                echo "success\n";
+                echo $vis;
             }
             else{
                 $vis = 1;
@@ -76,6 +77,7 @@ if (isset($_POST["saved"])) {
         }
         if(isset($vis)){
             echo "\nlonger query\n";
+            echo $newEmail . $newUsername;
             $stmt = $db->prepare("UPDATE Users set email= :email, username= :username, visibility= :v where id= :id");
             $r = $stmt->execute([":email" => $newEmail, ":username" => $newUsername, ":v"=>$vis, ":id" => get_user_id()]);
         }
