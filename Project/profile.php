@@ -133,7 +133,7 @@ if (isset($_POST["saved"])) {
         <input type="password" name="password" maxlength="60"/>
         <label for="cpw">Confirm New Password</label>
         <input type="password" name="confirm" maxlength="60"/>
-        <input type="submit" name="saved" value="Save Profile"/>
+        <input type="submit" name="saved" id = "saved" value="Save Profile"/>
     </form>
 </div>
 
