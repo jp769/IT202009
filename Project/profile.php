@@ -65,7 +65,7 @@ if (isset($_POST["saved"])) {
     }
     if ($isValid) {
         if(isset($_POST["visibility"])){
-            if(is_numeric($_POST["visibility"])){
+            if(is_numeric($_POST["visibility"]) && (intval($_POST["visibility"]) != -1)){
                 $vis = intval($_POST["visibility"]);
                 echo "success\n";
                 echo $vis;
@@ -145,7 +145,8 @@ if (isset($_POST["saved"])) {
         <input type="text" name="username" value="<?php safer_echo(get_username()); ?>" maxlength="60"/>
 
         <label for="visibility">Account Visible</label>
-        <select name="visibility" value="<?php if(get_visibility() == 1){echo("Public");}else{echo("Private");}; ?>">
+        <select name="visibility">
+            <option value="-1">Default</option>
             <option value="0">Private</option>
             <option value="1">Public</option>
         </select>
