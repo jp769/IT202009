@@ -113,6 +113,7 @@ if (isset($_POST["saved"])) {
             $_SESSION["user"]["email"] = $email;
             $_SESSION["user"]["username"] = $username;
             $_SESSION["user"]["visibility"] = $visibility;
+            echo $visibility;
         }
     }
     else {
