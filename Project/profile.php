@@ -113,7 +113,6 @@ if (isset($_POST["saved"])) {
             $_SESSION["user"]["email"] = $email;
             $_SESSION["user"]["username"] = $username;
             $_SESSION["user"]["visibility"] = $visibility;
-            echo $visibility;
         }
     }
     else {
@@ -134,6 +133,7 @@ if (isset($_POST["saved"])) {
         <select name="visibility" value="<?php echo safer_echo(get_visibility());?>">
             <option value="0">Private</option>
             <option value="1">Public</option>
+        </select>
 
         <!-- DO NOT PRELOAD PASSWORD-->
         <label for="current">Current Password</label>
