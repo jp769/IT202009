@@ -66,8 +66,9 @@ if (isset($_POST["saved"])) {
     if ($isValid) {
         if(isset($_POST["visibility"]))
             $visibility = $_POST["visibility"];
-        if(empty($visibility))
-            $visibility = 0;
+        else{
+            $visibility = $_SESSION["user"]["visibility"];
+        }
 
         $stmt = $db->prepare("UPDATE Users set email = :email, username= :username, visibility= :visibility where id = :id");
         $r = $stmt->execute([":email" => $newEmail, ":username" => $newUsername, ":visibility"=>$visibility, ":id" => get_user_id()]);
@@ -130,7 +131,9 @@ if (isset($_POST["saved"])) {
         <input type="text" name="username" value="<?php safer_echo(get_username()); ?>" maxlength="60"/>
 
         <label for="visibility">Account Visible</label>
-        <input type="checkbox" name="visibility" checked="<?php safer_echo(get_visibility()); ?>">
+        <select name="visibility" value="<?php echo safer_echo(get_visibility());?>">
+            <option value="0">Private</option>
+            <option value="1">Public</option>
 
         <!-- DO NOT PRELOAD PASSWORD-->
         <label for="current">Current Password</label>
