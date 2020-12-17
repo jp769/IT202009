@@ -66,7 +66,7 @@ if (isset($_POST["saved"])) {
     if ($isValid) {
         if(isset($_POST["visibility"]))
             $visibility = $_POST["visibility"];
-        else
+        if(empty($visibility))
             $visibility = 0;
 
         $stmt = $db->prepare("UPDATE Users set email = :email, username= :username, visibility= :visibility where id = :id");
