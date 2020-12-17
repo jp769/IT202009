@@ -132,8 +132,8 @@ if (isset($_POST["saved"])) {
         <label for="username">Username</label>
         <input type="text" name="username" value="<?php safer_echo(get_username()); ?>" maxlength="60"/>
 
-        <label for="visibility">Account Visible</label>
-        <select name="visibility" value="<?php safer_echo(get_visibility());?>>"><?php if(get_visibility() == 1 || get_visibility()=="1"):?>Public<?php else:?>Private<?php endif;?>>
+        <label for="visibility">Account Visible (Current: <?php if(get_visibility() == 1 || get_visibility()=="1"):echo("Public"); else echo ("Private"); endif;?>)</label>
+        <select name="visibility">
             <option value="0">Private</option>
             <option value="1">Public</option>
         </select>
