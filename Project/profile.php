@@ -64,15 +64,24 @@ if (isset($_POST["saved"])) {
         }
     }
     if ($isValid) {
-        $stmt = $db->prepare("UPDATE Users set email= :email, username= :username where id= :id");
-        $r = $stmt->execute([":email" => $newEmail, ":username" => $newUsername, ":id" => get_user_id()]);
+        if(isset($_POST["visibility"])){
+            if(is_numeric($_POST["visibility"])){
+                $vis = intval($_POST["visibility"]);
+            }
+            else{
+                $vis = 1;
+            }
+        }
+        if(isset($vis)){
+            $stmt = $db->prepare("UPDATE Users set email= :email, username= :username, visibility= :v where id= :id");
+            $r = $stmt->execute([":email" => $newEmail, ":username" => $newUsername, ":v"=>$vis, ":id" => get_user_id()]);
+        }
+        else{
+            $stmt = $db->prepare("UPDATE Users set email= :email, username= :username where id= :id");
+            $r = $stmt->execute([":email" => $newEmail, ":username" => $newUsername, ":id" => get_user_id()]);
+        }
 
         if ($r) {
-            $stmt = $db->prepare("UPDATE USERS set visibility= :v where id= :id");
-            echo intval($_POST["visibility"]);
-            echo "\n";
-            echo is_numeric($_POST["visibility"]);
-            $r = $stmt->execute([":v"=>intval($_POST["visibility"]), ":id"=>get_user_id()]);
             flash("Updated profile");
         }
         else {
@@ -113,7 +122,7 @@ if (isset($_POST["saved"])) {
             //let's update our session too
             $_SESSION["user"]["email"] = $email;
             $_SESSION["user"]["username"] = $username;
-            $_SESSION["user"]["visibility"] = $visibility;
+            $_SESSION["user"]["visibility"] = intval($visibility);
         }
     }
     else {
@@ -131,7 +140,7 @@ if (isset($_POST["saved"])) {
         <input type="text" name="username" value="<?php safer_echo(get_username()); ?>" maxlength="60"/>
 
         <label for="visibility">Account Visible</label>
-        <select name="visibility" value="<?php safer_echo($result["visibility"]); ?>">
+        <select name="visibility" value="<?php safer_echo($visibility); ?>">
             <option value="0">Private</option>
             <option value="1">Public</option>
         </select>
