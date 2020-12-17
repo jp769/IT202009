@@ -1,7 +1,7 @@
 CREATE TABLE IF NOT EXISTS Ratings
 (
     id         int auto_increment,
-    product_id  int NOT NUL,
+    product_id  int NOT NULL,
     user_id    int NOT NULL,
     rating  int NOT NULL CHECK (rating between 1 and 5),
     comment varchar(255),
