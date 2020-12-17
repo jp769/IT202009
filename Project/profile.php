@@ -112,7 +112,7 @@ if (isset($_POST["saved"])) {
             $visibility = $result["visibility"];
             echo $visibility;
             echo "re";
-            echo '\n';
+            echo "\n";
             //let's update our session too
             $_SESSION["user"]["email"] = $email;
             $_SESSION["user"]["username"] = $username;
