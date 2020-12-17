@@ -17,7 +17,7 @@ require_once(__DIR__ . "/../lib/helpers.php");
 
 <ul class="navbar sticky-top navbar-expand-md navbar-light" style="background-color: #087ead;">
     <ul class="navbar-nav mr-auto">
-        <li class="nav-item active"><a class="nav-link" href=<?php echo getURL("home.php");?>>Home</a></li>
+        <li class="nav-item"><a class="nav-link" href=<?php echo getURL("home.php");?>>Home</a></li>
         <?php if (!is_logged_in()): ?>
             <li class="nav-item"><a class="nav-link" href=<?php echo getURL("login.php");?>>Login</a></li>
             <li class="nav-item"><a class="nav-link" href=<?php echo getURL("register.php");?>>Register</a></li>
@@ -31,7 +31,7 @@ require_once(__DIR__ . "/../lib/helpers.php");
     </ul>
     <ul class="navbar-nav ml-auto">
         <?php if (is_logged_in()): ?>
-        <li class="nav-item active" ><a class="nav-link" href=<?php echo getURL("logout.php");?>>Logout</a></li>
+        <li class="nav-item" ><a class="nav-link" href=<?php echo getURL("logout.php");?>>Logout</a></li>
         <?php endif; ?>
 
         <?php if (has_role("Admin")): ?>
