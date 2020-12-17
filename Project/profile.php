@@ -106,10 +106,8 @@ if (isset($_POST["saved"])) {
         if ($result) {
             $email = $result["email"];
             $username = $result["username"];
-            $visibility = $result["visibility"];
-            echo $visibility;
-            echo "re";
-            echo "\n";
+            $visibility = intval($result["visibility"]);
+
             //let's update our session too
             $_SESSION["user"]["email"] = $email;
             $_SESSION["user"]["username"] = $username;
