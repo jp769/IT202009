@@ -78,7 +78,7 @@ if (isset($_POST["saved"])) {
         if(isset($vis)){
             echo "\nlonger query\n";
             echo $newEmail . $newUsername. get_user_id();
-            $stmt = $db->prepare("UPDATE Users set email= :email, username= :username, visibility= `:v` where id= :id");
+            $stmt = $db->prepare("UPDATE Users set email= :email, username= :username, visibility= :v where id= :id");
             $r = $stmt->execute([":email" => $newEmail, ":username" => $newUsername, ":v"=>$vis, ":id" => get_user_id()]);
         }
         else{
