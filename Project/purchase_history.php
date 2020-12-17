@@ -54,7 +54,7 @@ if(isset($db)) {
             $r1 = $stmt1->execute(["order_id"=>$o_id]);
             $result1 = $stmt1->fetchAll(PDO::FETCH_ASSOC);
 
-            ?><p> -Products (Order: <?php echo $o_id;?>)</p>
+            ?><p> Products (Order: <?php echo $o_id;?>)</p>
             <?php
             foreach ($result1 as $r2):?>
                 <div class="card">
@@ -74,6 +74,8 @@ if(isset($db)) {
                 <div class="Total">
                     <div> Total: <?php safer_echo($r["total_price"]); ?> </div>
                 </div>
+            <br>
+            <br>
 <?php
         }
 
