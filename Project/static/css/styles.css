@@ -155,3 +155,10 @@ label[for="visibility"], label[for="prod-label"], label[for="email"], label[for=
     display: block;
     margin: 0 auto;
 }
+
+select{
+    display:block;
+    width:fit-content;
+    text-align:center;
+    margin: 1% auto 1% auto;
+}
