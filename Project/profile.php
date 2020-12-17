@@ -67,7 +67,8 @@ if (isset($_POST["saved"])) {
         if(isset($_POST["visibility"])) {
             $visibility = $_POST["visibility"];
         }
-        echo "$visibility \n";
+        echo $visibility;
+        echo '\n';
         echo get_visibility();
         $stmt = $db->prepare("UPDATE Users set email= :email, username= :username, visibility= :visibility where id= :id");
         $r = $stmt->execute([":email" => $newEmail, ":username" => $newUsername, ":visibility"=>$visibility, ":id" => get_user_id()]);
@@ -109,7 +110,9 @@ if (isset($_POST["saved"])) {
             $email = $result["email"];
             $username = $result["username"];
             $visibility = $result["visibility"];
-            echo "\n$visibility\n";
+            echo $visibility;
+            echo "re";
+            echo '\n';
             //let's update our session too
             $_SESSION["user"]["email"] = $email;
             $_SESSION["user"]["username"] = $username;
