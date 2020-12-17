@@ -39,6 +39,14 @@ function get_user_id() {
     return -1;
 }
 
+function get_visibility() {
+    if (is_logged_in() && isset($_SESSION["user"]["visibility"])) {
+        return $_SESSION["user"]["visibility"];
+    }
+    return "";
+
+}
+
 function safer_echo($var) {
     if (!isset($var)) {
         echo "";

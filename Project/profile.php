@@ -96,15 +96,17 @@ if (isset($_POST["saved"])) {
 
 
 //fetch/select fresh data in case anything changed
-        $stmt = $db->prepare("SELECT email, username from Users WHERE id = :id LIMIT 1");
+        $stmt = $db->prepare("SELECT email, username, visibility from Users WHERE id = :id LIMIT 1");
         $stmt->execute([":id" => get_user_id()]);
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         if ($result) {
             $email = $result["email"];
             $username = $result["username"];
+            $visibility = $result["visibility"];
             //let's update our session too
             $_SESSION["user"]["email"] = $email;
             $_SESSION["user"]["username"] = $username;
+            $_SESSION["user"]["visibility"] = $visibility;
         }
     }
     else {
@@ -120,6 +122,10 @@ if (isset($_POST["saved"])) {
         <input type="email" name="email" value="<?php safer_echo(get_email()); ?>"/>
         <label for="username">Username</label>
         <input type="text" name="username" value="<?php safer_echo(get_username()); ?>" maxlength="60"/>
+
+        <label for="visibility">Account Visible</label>
+        <input type="checkbox" name="visibilty" checked="<?php safer_echo(get_visibility()); ?>">
+
         <!-- DO NOT PRELOAD PASSWORD-->
         <label for="current">Current Password</label>
 	<input type="password" name="current" maxlength="60"/>
