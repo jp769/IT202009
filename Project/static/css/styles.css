@@ -37,7 +37,7 @@ input, select {
     border: 2px solid #ccc;
     border-radius: 40px;
     box-sizing: border-box;
-    
+
 }
 
 input[type=submit] {
@@ -71,7 +71,16 @@ input[type=password] {
     width: 25%;
 }
 
+<<<<<<< HEAD
 label[for="prod-label"], label[for="email"], label[for="p1"], label[for="username"], label[for="current"], label[for="pw"], label[for="cpw"]{
+=======
+input[type=checkbox]{
+    display: block;
+    margin: 0.5% auto 2%;
+}
+
+label[for="visibility"], label[for="prod-label"], label[for="email"], label[for="p1"], label[for="username"], label[for="current"], label[for="pw"], label[for="cpw"]{
+>>>>>>> faa4e860cef90e89dd94bd7a95e1ac086d393ae9
     margin-left: 37.5%;
     margin-right: 37.5%;
     display: block;
@@ -79,51 +88,63 @@ label[for="prod-label"], label[for="email"], label[for="p1"], label[for="usernam
 }
 
 .dropdown {
-  float: right;
-  overflow: hidden;
+    float: right;
+    overflow: hidden;
 }
 
 .dropdown .dropbtn {
-  font-size: 18px;
-  border: none;
-  outline: none;
-  color: white;
-  padding: 14px 16px;
-  background-color: inherit;
-  font-family: inherit;
-  margin: 0;
+    font-size: 18px;
+    border: none;
+    outline: none;
+    color: white;
+    padding: 14px 16px;
+    background-color: inherit;
+    font-family: inherit;
+    margin: 0;
 }
 
 .navbar a:hover, .dropdown:hover .dropbtn {
-  background-color: #08b1ff;
+    background-color: #08b1ff;
 }
 
 .dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #f9f9f9;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
 }
 
 .dropdown-content a {
-  
-  float: none;
-  color: black;
-  display: block;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-  text-align: left;
+
+    float: none;
+    color: black;
+    display: block;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
 }
 
 .dropdown-content a:hover {
-  background-color: #08b1ff;
+    background-color: #08b1ff;
 }
 
 .dropdown:hover .dropdown-content {
-  display: block;
+    display: block;
+}
+
+#adr, #city, #state, #zip, #payMethod {
+    display: block;
+    text-align: left;
+    margin-left: initial;
+    width:fit-content;
+}
+
+#saved{
+    display: block;
+    margin: 0 auto;
 }
 
 #adr, #city, #state, #zip, #payMethod {
