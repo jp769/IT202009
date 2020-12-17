@@ -22,7 +22,7 @@ require_once(__DIR__ . "/../lib/helpers.php");
             <li class="nav-item"><a class="nav-link" href=<?php echo getURL("login.php");?>>Login</a></li>
             <li class="nav-item"><a class="nav-link" href=<?php echo getURL("register.php");?>>Register</a></li>
         <?php endif; ?>
-        <li class="nav-item"><a href=<?php echo getURL("product_list.php");?>>Products</a></li>
+        <li class="nav-item"><a class="nav-link" href=<?php echo getURL("product_list.php");?>>Products</a></li>
         <?php if (is_logged_in()): ?>
             <li class="nav-item"><a class="nav-link" href=<?php echo getURL("profile.php");?>>Profile</a></li>
             <li class="nav-item"><a class="nav-link" href=<?php echo getURL("cart.php");?>>Cart</a></li>
