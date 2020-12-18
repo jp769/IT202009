@@ -17,6 +17,15 @@ if (isset($id)) {
         $e = $stmt->errorInfo();
         flash($e[2]);
     }
+
+    $stmt2 = $db->prepare("SELECT count(*) as c FROM OrderItems oi JOIN Orders o on oi.order_id where user_id= :id AND product_id= :prod");
+    $r2 = $stmt2->execute([":id"=>get_user_id(), ":prod"=>$id]);
+    $check = $stmt->fetch(PDO::FETCH_ASSOC);
+    $c = 0;
+    if ($check) {
+        $c = (int)$result["c"];
+    }
+
 }
 ?>
 
@@ -33,6 +42,11 @@ if (isset($id)) {
                 <div>Description: <?php safer_echo($result["description"]); ?></div>
                 <div>Creator: <?php safer_echo($result["username"]); ?></div>
             </div>
+            <?php if ($c > 0):?>
+            <div>
+                <a type="button" href="<?php echo getURL("rating.php");?>?id=<?php safer_echo($result['id']); ?>">Rate Product</a>
+            </div>
+            <?php endif; ?>
         </div>
     </div>
 <?php else: ?>
