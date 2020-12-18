@@ -78,7 +78,7 @@ label[for="visibility"], label[for="prod-label"], label[for="p_Sort"], label[for
     width:fit-content;
 }
 
-#saved, input[name="search"]{
+#saved, input[name="search"], input[name="login"]{
     display: block;
     margin: 0 auto;
 }
