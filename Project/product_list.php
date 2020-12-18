@@ -3,7 +3,24 @@
 <?php
 $query = "";
 $sort = "";
+$per_page = 10;
 $results = [];
+$result2 = [];
+
+if(isset($_POST["stock"])){
+    $db = getDB();
+    $stmt = $db->prepare("SELECT count(*) as total from Products where quantity=0");
+    $params = [];
+    paginate($query, $params, $per_page);
+
+    $stmt = $db->prepare("SELECT name, category, Users.username from Products JOIN Users on Products.user_id = Users.id WHERE quantity=0 ORDER BY name ASC LIMIT :offset, :count");
+    $stmt->bindValue(":offset", $offset, PDO::PARAM_INT);
+    $stmt->bindValue(":count", $per_page, PDO::PARAM_INT);
+    $r = $stmt->execute();
+    $result2 = $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+
 if (isset($_POST["query"])) {
     $query = $_POST["query"];
 
@@ -13,17 +30,31 @@ if (isset($_POST["query"])) {
 }
 if (isset($_POST["search"]) && !empty($query)) {
     $db = getDB();
+
+    $stmt = $db->prepare("SELECT count(*) as total from Products WHERE quantity > 0 AND name like :q or category like :q");
+    $params = [":q" => "%$query%"];
+    paginate($query, $params, $per_page);
+
     if($sort == "ASC"){
-        $stmt = $db->prepare("SELECT id,name,quantity,price,description,user_id,visibility,category from Products WHERE name like :q or category like :q ORDER BY price ASC LIMIT 10");
-        $r = $stmt->execute([":q" => "%$query%"]);
+        $stmt = $db->prepare("SELECT id,name,quantity,price,description,user_id,visibility,category from Products WHERE quantity > 0 AND name like :q or category like :q ORDER BY price ASC LIMIT :offset, :count");
+        $stmt->bindValue(":offset", $offset, PDO::PARAM_INT);
+        $stmt->bindValue(":count", $per_page, PDO::PARAM_INT);
+        $stmt->bindValue(":q", "%$query%");
+        $r = $stmt->execute();
     }
     elseif ($sort == "DESC"){
-        $stmt = $db->prepare("SELECT id,name,quantity,price,description,user_id,visibility,category from Products WHERE name like :q or category like :q ORDER BY price DESC LIMIT 10");
-        $r = $stmt->execute([":q" => "%$query%"]);
+        $stmt = $db->prepare("SELECT id,name,quantity,price,description,user_id,visibility,category from Products WHERE quantity > 0 AND name like :q or category like :q ORDER BY price DESC LIMIT :offset, :count");
+        $stmt->bindValue(":offset", $offset, PDO::PARAM_INT);
+        $stmt->bindValue(":count", $per_page, PDO::PARAM_INT);
+        $stmt->bindValue(":q", "%$query%");
+        $r = $stmt->execute();
     }
     else {
-        $stmt = $db->prepare("SELECT id,name,quantity,price,description,user_id,visibility,category from Products WHERE name like :q or category like :q  LIMIT 10");
-        $r = $stmt->execute([":q" => "%$query%"]);
+        $stmt = $db->prepare("SELECT id,name,quantity,price,description,user_id,visibility,category from Products WHERE quantity > 0 AND name like :q or category like :q  LIMIT :offset, :count");
+        $stmt->bindValue(":offset", $offset, PDO::PARAM_INT);
+        $stmt->bindValue(":count", $per_page, PDO::PARAM_INT);
+        $stmt->bindValue(":q", "%$query%");
+        $r = $stmt->execute();
     }
 
     if ($r) {
@@ -58,6 +89,37 @@ if (isset($_POST["search"]) && !empty($query)) {
             xhttp.send("itemId="+itemId);
         }
     </script>
+
+<?php if(has_role("Admin")):?>
+    <div>
+        <form method="POST">
+            <input type="submit" value="Check Out of Stock" name="stock"/>
+        </form>
+    </div>
+
+    <?php if (count($result2) > 0): ?>
+    <div class="results">
+        <h4 style="color:red"> - - - OUT OF STOCK - - - </h4>
+        <div class="list-group">
+        <?php foreach ($result2 as $r): ?>
+            <div class="list-group-item">
+                <div>
+                    <div>Name: <?php safer_echo($r["name"]); ?></div>
+                </div>
+                <div>
+                  <div>Category: <?php safer_echo($r["category"]); ?></div>
+                </div>
+                <div>
+                    <div>Creator: <?php safer_echo($r["username"]); ?></div>
+                </div>
+            </div>
+        <?php endforeach; ?>
+        </div>
+    </div>
+    <?php endif;?>
+
+
+<?php endif;?>
 
     <form method="POST">
         <input name="query" placeholder="Search" value="<?php safer_echo($query); ?>"/>
@@ -116,9 +178,13 @@ if (isset($_POST["search"]) && !empty($query)) {
                 <?php endif;?>
                 <?php endforeach; ?>
             </div>
+    </div>
+    <?php include(__DIR__."/partials/pagination.php");?>
+    </div>
         <?php else: ?>
             <p>No results</p>
         <?php endif; ?>
     </div>
+
 
 <?php require(__DIR__ . "/partials/flash.php");

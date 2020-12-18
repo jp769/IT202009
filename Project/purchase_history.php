@@ -8,17 +8,36 @@ if (!is_logged_in()) {
 
 $db = getDB();
 
+//pagination
+$per_page = 10;
+
+if(!has_role("Admin")){
+$query = "SELECT count(*) as total from Orders o where o.user_id = :id";
+$params = [":id"=>get_user_id()];
+paginate($query, $params, $per_page);
+}
+else{
+    $query = "SELECT count(*) as total from Orders";
+    $params = [":id"=>get_user_id()];
+    paginate($query, $params, $per_page);
+}
+
 //fetch OrderItems using userId
 $result =[];
 if(isset($db)) {
     if(!has_role("Admin")) {
         $id = get_user_id();
 
-        $stmt = $db->prepare("SELECT * FROM Orders WHERE user_id = :user_id LIMIT 10");
-        $r = $stmt->execute(["user_id" => get_user_id()]);
+        $stmt = $db->prepare("SELECT * FROM Orders WHERE user_id = :user_id ORDER BY 'created' DESC LIMIT :offset, :count");
+        $stmt->bindValue(":offset", $offset, PDO::PARAM_INT);
+        $stmt->bindValue(":count", $per_page, PDO::PARAM_INT);
+        $stmt->bindValue(":user_id", get_user_id());
+        $r = $stmt->execute();
     }
     else{
-        $stmt = $db->prepare("SELECT * FROM Orders LIMIT 10");
+        $stmt = $db->prepare("SELECT * FROM Orders ORDER BY created DESC LIMIT :offset, :count");
+        $stmt->bindValue(":offset", $offset, PDO::PARAM_INT);
+        $stmt->bindValue(":count", $per_page, PDO::PARAM_INT);
         $r = $stmt->execute();
     }
 
@@ -31,11 +50,11 @@ if(isset($db)) {
     if (count($result) > 0) {
         foreach ($result as $r) {
             $o_id = $r['id'];
-            $stmt1 = $db->prepare("SELECT * FROM OrderItems LEFT JOIN Products Product on Product.id = OrderItems.product_id WHERE order_id = :order_id");
+            $stmt1 = $db->prepare("SELECT * FROM OrderItems LEFT JOIN Products Product on Product.id = OrderItems.product_id WHERE order_id = :order_id ");
             $r1 = $stmt1->execute(["order_id"=>$o_id]);
             $result1 = $stmt1->fetchAll(PDO::FETCH_ASSOC);
 
-            ?><p> -Products (Order: <?php echo $o_id;?>)</p>
+            ?><p> Products (Order: <?php echo $o_id;?>)</p>
             <?php
             foreach ($result1 as $r2):?>
                 <div class="card">
@@ -55,10 +74,16 @@ if(isset($db)) {
                 <div class="Total">
                     <div> Total: <?php safer_echo($r["total_price"]); ?> </div>
                 </div>
+            <br>
+            <br>
 <?php
         }
 
     }
-}
+}?>
 
-require(__DIR__ . "/partials/flash.php");
+</div>
+<?php include(__DIR__."/partials/pagination.php");?>
+</div>
+
+<?php require(__DIR__ . "/partials/flash.php");

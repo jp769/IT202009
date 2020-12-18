@@ -64,8 +64,16 @@ if (isset($_POST["saved"])) {
         }
     }
     if ($isValid) {
-        $stmt = $db->prepare("UPDATE Users set email = :email, username= :username where id = :id");
-        $r = $stmt->execute([":email" => $newEmail, ":username" => $newUsername, ":id" => get_user_id()]);
+
+        if(intval($_POST["visibility"]) == 0){
+            $stmt = $db->prepare("UPDATE Users set email= :email, username= :username, visibility=0 where id= :id");
+            $r = $stmt->execute([":email" => $newEmail, ":username" => $newUsername, ":id" => get_user_id()]);
+        }
+        else{
+            $stmt = $db->prepare("UPDATE Users set email= :email, username= :username, visibility=1 where id= :id");
+            $r = $stmt->execute([":email" => $newEmail, ":username" => $newUsername, ":id" => get_user_id()]);
+        }
+
         if ($r) {
             flash("Updated profile");
         }
@@ -102,11 +110,12 @@ if (isset($_POST["saved"])) {
         if ($result) {
             $email = $result["email"];
             $username = $result["username"];
-            $visibility = $result["visibility"];
+            $visibility = intval($result["visibility"]);
+
             //let's update our session too
             $_SESSION["user"]["email"] = $email;
             $_SESSION["user"]["username"] = $username;
-            $_SESSION["user"]["visibility"] = $visibility;
+            $_SESSION["user"]["visibility"] = intval($visibility);
         }
     }
     else {
@@ -123,8 +132,11 @@ if (isset($_POST["saved"])) {
         <label for="username">Username</label>
         <input type="text" name="username" value="<?php safer_echo(get_username()); ?>" maxlength="60"/>
 
-        <label for="visibility">Account Visible</label>
-        <input type="checkbox" name="visibilty" checked="<?php safer_echo(get_visibility()); ?>">
+        <label for="visibility">Account Visible (Current: <?php if(intval(get_visibility()) == 1){echo("Public");} else{echo ("Private");} ?>)</label>
+        <select name="visibility">
+            <option value="0">Private</option>
+            <option value="1">Public</option>
+        </select>
 
         <!-- DO NOT PRELOAD PASSWORD-->
         <label for="current">Current Password</label>

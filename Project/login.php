@@ -1,4 +1,5 @@
 <?php require_once(__DIR__ . "/partials/nav.php"); ?>
+
 <div class="form">
 <form method="POST">
     <label for="email">Email:</label>
