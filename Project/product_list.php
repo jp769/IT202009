@@ -3,6 +3,7 @@
 <?php
 $query = "";
 $sort = "";
+$per_page = 10;
 $results = [];
 if (isset($_POST["query"])) {
     $query = $_POST["query"];
@@ -13,16 +14,28 @@ if (isset($_POST["query"])) {
 }
 if (isset($_POST["search"]) && !empty($query)) {
     $db = getDB();
+
+    $stmt = $db->prepare("SELECT count(*) from Products WHERE quantity > 0 AND name like :q or category like :q");
+    $params = [":q" => "%$query%"];
+    paginate($query, $params, $per_page);
+
     if($sort == "ASC"){
-        $stmt = $db->prepare("SELECT id,name,quantity,price,description,user_id,visibility,category from Products WHERE name like :q or category like :q ORDER BY price ASC LIMIT 10");
-        $r = $stmt->execute([":q" => "%$query%"]);
+        $stmt = $db->prepare("SELECT id,name,quantity,price,description,user_id,visibility,category from Products WHERE quantity > 0 AND name like :q or category like :q ORDER BY price ASC LIMIT :offset, :count");
+        $stmt->bindValue(":offset", $offset, PDO::PARAM_INT);
+        $stmt->bindValue(":count", $per_page, PDO::PARAM_INT);
+        $stmt->bindValue(":q", $query);
+        $r = $stmt->execute();
     }
     elseif ($sort == "DESC"){
-        $stmt = $db->prepare("SELECT id,name,quantity,price,description,user_id,visibility,category from Products WHERE name like :q or category like :q ORDER BY price DESC LIMIT 10");
+        $stmt = $db->prepare("SELECT id,name,quantity,price,description,user_id,visibility,category from Products WHERE quantity > 0 AND name like :q or category like :q ORDER BY price DESC LIMIT :offset, :count");
+        $stmt->bindValue(":offset", $offset, PDO::PARAM_INT);
+        $stmt->bindValue(":count", $per_page, PDO::PARAM_INT);
         $r = $stmt->execute([":q" => "%$query%"]);
     }
     else {
-        $stmt = $db->prepare("SELECT id,name,quantity,price,description,user_id,visibility,category from Products WHERE name like :q or category like :q  LIMIT 10");
+        $stmt = $db->prepare("SELECT id,name,quantity,price,description,user_id,visibility,category from Products WHERE quantity > 0 AND name like :q or category like :q  LIMIT :offset, :count");
+        $stmt->bindValue(":offset", $offset, PDO::PARAM_INT);
+        $stmt->bindValue(":count", $per_page, PDO::PARAM_INT);
         $r = $stmt->execute([":q" => "%$query%"]);
     }
 
@@ -116,9 +129,13 @@ if (isset($_POST["search"]) && !empty($query)) {
                 <?php endif;?>
                 <?php endforeach; ?>
             </div>
+    </div>
+    <?php include(__DIR__."/partials/pagination.php");?>
+    </div>
         <?php else: ?>
             <p>No results</p>
         <?php endif; ?>
     </div>
+
 
 <?php require(__DIR__ . "/partials/flash.php");
