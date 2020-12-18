@@ -5,6 +5,7 @@ $query = "";
 $sort = "";
 $per_page = 10;
 $results = [];
+$result2 = [];
 
 if(isset($_POST["stock"])){
     $db = getDB();
@@ -12,10 +13,11 @@ if(isset($_POST["stock"])){
     $params = [];
     paginate($query, $params, $per_page);
 
-    $stmt = $db->prepare("SELECT name, quantity, category from Products WHERE quantity=0 ORDER BY name ASC LIMIT :offset, :count");
+    $stmt = $db->prepare("SELECT name, category, Users.username from Products JOIN Users on Products.user_id = Users.id WHERE quantity=0 ORDER BY name ASC LIMIT :offset, :count");
     $stmt->bindValue(":offset", $offset, PDO::PARAM_INT);
     $stmt->bindValue(":count", $per_page, PDO::PARAM_INT);
     $r = $stmt->execute();
+    $result2 = $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
 
@@ -94,6 +96,28 @@ if (isset($_POST["search"]) && !empty($query)) {
             <input type="submit" value="Check Out of Stock" name="stock"/>
         </form>
     </div>
+
+    <?php if (count($result2) > 0): ?>
+    <div class="results">
+        <div class="list-group">
+        <?php foreach ($result2 as $r): ?>
+            <div class="list-group-item">
+                <div>
+                    <div>Name: <?php safer_echo($r["name"]); ?></div>
+                </div>
+                <div>
+                  <div>Category: <?php safer_echo($r["category"]); ?></div>
+                </div>
+                <div>
+                    <div>Creator: <?php safer_echo($result["username"]); ?></div>
+                </div>
+            </div>
+        <?php endforeach; ?>
+        </div>
+    </div>
+    <?php endif;?>
+
+
 <?php endif;?>
 
     <form method="POST">

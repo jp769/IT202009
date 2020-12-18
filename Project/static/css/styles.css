@@ -83,7 +83,7 @@ label[for="visibility"], label[for="prod-label"], label[for="p_Sort"], label[for
     margin: 0 auto;
 }
 
-select{
+select, input[name="stock"]{
     display:block;
     width:fit-content;
     text-align:center;
