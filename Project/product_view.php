@@ -8,6 +8,7 @@ if (isset($_GET["id"])) {
 <?php
 //fetching
 $result = [];
+
 if (isset($id)) {
     $db = getDB();
     $stmt = $db->prepare("SELECT Products.id,name,quantity,price,description,user_id, Users.username FROM Products as Products JOIN Users on Products.user_id = Users.id where Products.id = :id");
@@ -23,7 +24,7 @@ if (isset($id)) {
     $check = $stmt->fetch(PDO::FETCH_ASSOC);
     $c = 0;
     if ($check) {
-        $c = (int)$result["c"];
+        $c = (int)$check["c"];
     }
 
 }
