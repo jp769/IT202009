@@ -109,7 +109,7 @@ if (isset($_POST["search"]) && !empty($query)) {
                   <div>Category: <?php safer_echo($r["category"]); ?></div>
                 </div>
                 <div>
-                    <div>Creator: <?php safer_echo($result["username"]); ?></div>
+                    <div>Creator: <?php safer_echo($r["username"]); ?></div>
                 </div>
             </div>
         <?php endforeach; ?>
