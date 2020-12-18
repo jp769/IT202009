@@ -30,13 +30,15 @@ if (isset($_POST["search"]) && !empty($query)) {
         $stmt = $db->prepare("SELECT id,name,quantity,price,description,user_id,visibility,category from Products WHERE quantity > 0 AND name like :q or category like :q ORDER BY price DESC LIMIT :offset, :count");
         $stmt->bindValue(":offset", $offset, PDO::PARAM_INT);
         $stmt->bindValue(":count", $per_page, PDO::PARAM_INT);
-        $r = $stmt->execute([":q" => "%$query%"]);
+        $stmt->bindValue(":q", $query);
+        $r = $stmt->execute();
     }
     else {
         $stmt = $db->prepare("SELECT id,name,quantity,price,description,user_id,visibility,category from Products WHERE quantity > 0 AND name like :q or category like :q  LIMIT :offset, :count");
         $stmt->bindValue(":offset", $offset, PDO::PARAM_INT);
         $stmt->bindValue(":count", $per_page, PDO::PARAM_INT);
-        $r = $stmt->execute([":q" => "%$query%"]);
+        $stmt->bindValue(":q", $query);
+        $r = $stmt->execute();
     }
 
     if ($r) {
