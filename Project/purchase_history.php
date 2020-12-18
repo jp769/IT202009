@@ -29,10 +29,10 @@ if(isset($db)) {
         $id = get_user_id();
 
         $stmt = $db->prepare("SELECT * FROM Orders WHERE user_id = :user_id ORDER BY created DESC LIMIT :offset, :count");
+        $stmt->bindValue(":user_id", $id, PDO::PARAM_STR);
         $stmt->bindValue(":offset", $offset, PDO::PARAM_INT);
         $stmt->bindValue(":count", $per_page, PDO::PARAM_INT);
-        $stmt->bindValue(":id", get_user_id());
-        $r = $stmt->execute(["user_id" => get_user_id()]);
+        $r = $stmt->execute();
     }
     else{
         $stmt = $db->prepare("SELECT * FROM ORDER BY created DESC Orders LIMIT :offset, :count");
