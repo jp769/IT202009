@@ -64,7 +64,7 @@ input[type=checkbox], input[name="query"]{
     margin: 0.5% auto 2%;
 }
 
-label[for="visibility"], label[for="prod-label"], label[for="p_Sort"], label[for="email"], label[for="p1"], label[for="username"], label[for="current"], label[for="pw"], label[for="cpw"]{
+label[for="user"], label[for="p2"], label[for="visibility"], label[for="prod-label"], label[for="p_Sort"], label[for="email"], label[for="p1"], label[for="username"], label[for="current"], label[for="pw"], label[for="cpw"]{
     margin-left: 37.5%;
     margin-right: 37.5%;
     display: block;
