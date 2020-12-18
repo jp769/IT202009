@@ -15,7 +15,7 @@ if (isset($_POST["query"])) {
 if (isset($_POST["search"]) && !empty($query)) {
     $db = getDB();
 
-    $stmt = $db->prepare("SELECT count(*) from Products WHERE quantity > 0 AND name like :q or category like :q");
+    $stmt = $db->prepare("SELECT count(*) as total from Products WHERE quantity > 0 AND name like :q or category like :q");
     $params = [":q" => "%$query%"];
     paginate($query, $params, $per_page);
 
