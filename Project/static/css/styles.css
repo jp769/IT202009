@@ -83,7 +83,7 @@ label[for="user"], label[for="p2"], label[for="visibility"], label[for="prod-lab
     margin: 0 auto;
 }
 
-select, input[name="stock"]{
+select, input[name="stock"], input[name="register"]{
     display:block;
     width:fit-content;
     text-align:center;
