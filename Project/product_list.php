@@ -5,6 +5,20 @@ $query = "";
 $sort = "";
 $per_page = 10;
 $results = [];
+
+if(isset($_POST["stock"])){
+    $db = getDB();
+    $stmt = $db->prepare("SELECT count(*) as total from Products where quantity=0");
+    $params = [];
+    paginate($query, $params, $per_page);
+
+    $stmt = $db->prepare("SELECT name, quantity, category from Products WHERE quantity=0 ORDER BY name ASC LIMIT :offset, :count");
+    $stmt->bindValue(":offset", $offset, PDO::PARAM_INT);
+    $stmt->bindValue(":count", $per_page, PDO::PARAM_INT);
+    $r = $stmt->execute();
+}
+
+
 if (isset($_POST["query"])) {
     $query = $_POST["query"];
 
@@ -73,6 +87,14 @@ if (isset($_POST["search"]) && !empty($query)) {
             xhttp.send("itemId="+itemId);
         }
     </script>
+
+<?php if(has_role("Admin")):?>
+    <div>
+        <form method="POST">
+            <input type="submit" value="Check Out of Stock" name="stock"/>
+        </form>
+    </div>
+<?php endif;?>
 
     <form method="POST">
         <input name="query" placeholder="Search" value="<?php safer_echo($query); ?>"/>
