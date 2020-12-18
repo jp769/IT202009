@@ -47,8 +47,8 @@ require_once(__DIR__ . "/../lib/helpers.php");
                     <a class="dropdown-item" href=<?php echo getURL("Test/test_list_cart.php");?>>List Cart</a>
                 </div>
             </li>
-    </ul>
     <?php endif; ?>
+    </ul>
     <?php endif; ?>
 </ul>
 </nav>
