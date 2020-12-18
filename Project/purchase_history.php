@@ -35,7 +35,7 @@ if(isset($db)) {
         $r = $stmt->execute();
     }
     else{
-        $stmt = $db->prepare("SELECT * FROM ORDER BY created DESC LIMIT :offset, :count");
+        $stmt = $db->prepare("SELECT * FROM Orders ORDER BY created DESC LIMIT :offset, :count");
         $stmt->bindValue(":offset", $offset, PDO::PARAM_INT);
         $stmt->bindValue(":count", $per_page, PDO::PARAM_INT);
         $r = $stmt->execute();
