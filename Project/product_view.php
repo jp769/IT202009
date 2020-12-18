@@ -42,7 +42,6 @@ if (isset($id)) {
                 <div>Price: <?php safer_echo($result["price"]); ?></div>
                 <div>Description: <?php safer_echo($result["description"]); ?></div>
                 <div>Creator: <?php safer_echo($result["username"]); ?></div>
-                <?php safer_echo($c);?>
             </div>
             <?php if ($c > 0):?>
             <div>
