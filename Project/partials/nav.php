@@ -15,7 +15,7 @@ require_once(__DIR__ . "/../lib/helpers.php");
         integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
         crossorigin="anonymous"></script>
 
-<ul class="navbar sticky-top navbar-expand-md navbar-light" style="background-color: #087ead;">
+<ul class="navbar navbar-expand-md navbar-light" style="background-color: #087ead;">
     <ul class="navbar-nav mr-auto">
         <li class="nav-item"><a class="nav-link" href=<?php echo getURL("home.php");?>>Home</a></li>
         <?php if (!is_logged_in()): ?>
