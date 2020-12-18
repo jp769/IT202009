@@ -99,6 +99,7 @@ if (isset($_POST["search"]) && !empty($query)) {
 
     <?php if (count($result2) > 0): ?>
     <div class="results">
+        <h4><font color=\"red\"> - - - OUT OF STOCK - - - </font></h4>
         <div class="list-group">
         <?php foreach ($result2 as $r): ?>
             <div class="list-group-item">
