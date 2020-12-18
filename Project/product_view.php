@@ -21,7 +21,7 @@ if (isset($id)) {
 
     $stmt2 = $db->prepare("SELECT count(*) as c FROM OrderItems oi JOIN Orders o on oi.order_id where user_id= :id AND product_id= :prod");
     $r2 = $stmt2->execute([":id"=>get_user_id(), ":prod"=>$id]);
-    $check = $stmt->fetch(PDO::FETCH_ASSOC);
+    $check = $stmt2->fetch(PDO::FETCH_ASSOC);
     $c = 0;
     if ($check) {
         $c = (int)$check["c"];
